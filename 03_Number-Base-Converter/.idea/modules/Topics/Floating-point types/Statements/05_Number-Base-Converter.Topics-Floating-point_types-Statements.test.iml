@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Floating-point_types-Statements:test" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Floating-point types/Statements" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="05_Number-Base-Converter" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output-test url="file://$MODULE_DIR$/../../../../../Topics/Floating-point types/Statements/out/test/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Floating-point types/Statements/src/test" />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Floating-point types/Statements/test" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="05_Number-Base-Converter.Topics-Floating-point_types-Statements.main" />
+    <orderEntry type="module" module-name="05_Number-Base-Converter.util.main" />
+    <orderEntry type="module" module-name="05_Number-Base-Converter.util.test" production-on-test="" />
+    <orderEntry type="library" name="Gradle: com.github.hyperskill:hs-test:release-SNAPSHOT" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="05_Number-Base-Converter.Topics-Floating-point_types-Statements.main" />
+</module>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/05_Number-Base-Converter.iml" filepath="$PROJECT_DIR$/.idea/modules/05_Number-Base-Converter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Find X/05_Number-Base-Converter.Topics-Floating-point_types-Find_X.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Find X/05_Number-Base-Converter.Topics-Floating-point_types-Find_X.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Find X/05_Number-Base-Converter.Topics-Floating-point_types-Find_X.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Find X/05_Number-Base-Converter.Topics-Floating-point_types-Find_X.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Find X/05_Number-Base-Converter.Topics-Floating-point_types-Find_X.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Find X/05_Number-Base-Converter.Topics-Floating-point_types-Find_X.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Statements/05_Number-Base-Converter.Topics-Floating-point_types-Statements.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Statements/05_Number-Base-Converter.Topics-Floating-point_types-Statements.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Statements/05_Number-Base-Converter.Topics-Floating-point_types-Statements.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Statements/05_Number-Base-Converter.Topics-Floating-point_types-Statements.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Statements/05_Number-Base-Converter.Topics-Floating-point_types-Statements.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Statements/05_Number-Base-Converter.Topics-Floating-point_types-Statements.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Theory/05_Number-Base-Converter.Topics-Floating-point_types-Theory.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Theory/05_Number-Base-Converter.Topics-Floating-point_types-Theory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Theory/05_Number-Base-Converter.Topics-Floating-point_types-Theory.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Theory/05_Number-Base-Converter.Topics-Floating-point_types-Theory.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Theory/05_Number-Base-Converter.Topics-Floating-point_types-Theory.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Topics/Floating-point types/Theory/05_Number-Base-Converter.Topics-Floating-point_types-Theory.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/05_Number-Base-Converter.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/05_Number-Base-Converter.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/05_Number-Base-Converter.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/05_Number-Base-Converter.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/05_Number-Base-Converter.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/05_Number-Base-Converter.util.test.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,29 @@
+<h2>Valid Requests</h2>
+<html>
+ <head></head>
+ <body>
+  <p></p>
+  <p>Here is a class representing a task:</p> 
+  <pre><code class="language-java">public class Task {
+    private int id;
+    private String name;
+    private String description;
+    private boolean completed;
+
+    // getters and setters
+}</code></pre> 
+  <p>Which REST request would return the task with the <code class="language-java">id = 1</code> as the value from the list?</p> 
+  <pre><code class="language-java">@RestController
+public class TaskController {
+    List&lt;Task&gt; taskList = List.of(
+        new Task(1, "task1", "A first test task", false),
+        new Task(2, "task2", "A second test task", true)
+    );
+
+    @GetMapping("/tasks/{id}")
+    public Task getTasks(@PathVariable int id) {
+        return taskList.get(id);
+    }
+}</code></pre>
+ </body>
+</html>

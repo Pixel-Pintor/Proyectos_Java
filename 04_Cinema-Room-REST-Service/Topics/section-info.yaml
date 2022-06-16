@@ -1,0 +1,11 @@
+content:
+- Introduction to generic programming
+- The Collections Framework overview
+- ArrayList
+- The List interface
+- Getting data from REST
+- Lambda expressions
+- The Set interface
+- Threads as objects
+- Custom threads
+- Thread management

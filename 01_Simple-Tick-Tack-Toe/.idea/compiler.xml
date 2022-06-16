@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="01_Simple-Tick-Tack-Toe.Simple_Tic-Tac-Toe-task.main" target="11" />
+      <module name="01_Simple-Tick-Tack-Toe.util.main" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="01_Simple-Tick-Tack-Toe.Simple_Tic-Tac-Toe-task.main" options="--add-modules java.base" />
+    </option>
+  </component>
+</project>

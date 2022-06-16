@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Learning Progress Tracker/task" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Autoboxing int" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Identify a possible exception" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Identify possible exceptions" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Initializing long value" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/NPE, zero or null" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Only true or false" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Result of the code" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Safe converting" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Boxing and unboxing/Wrapper classes for char and int" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Correctly overridden methods" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Employee and Programmer" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Incorrectly overridden methods" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Overriding rules" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Publications" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Rules for overriding" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Rules for overriding (1)" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Saying animals" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Shapes area" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Unusual overriding" />
+            <option value="$PROJECT_DIR$/Topics/Hiding and overriding/Which methods will be overridden" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Area of a circle" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Implementing an interface" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Interface methods" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Marker interface" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Mutable geometric shapes" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Properties of methods" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Statements" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Interface/What can an interface have" />
+            <option value="$PROJECT_DIR$/Topics/Interface/What does an interface define" />
+            <option value="$PROJECT_DIR$/Topics/Interface/Which methods must be overridden" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Notification" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Publication and its subclasses" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Runtime method resolution" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Runtime polymorphic behavior" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Statements" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Superclass method call" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/The time of overloading" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Polymorphism/Type of polymorphism" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

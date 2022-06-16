@@ -1,0 +1,19 @@
+<h2>Returning a list index</h2>
+<html>
+ <head></head>
+ <body>
+  <p>Complete the code below so that it returns the list value named <code class="language-java">studentList</code> at the ID provided through <code class="language-java">@PathVariable</code></p> 
+  <pre><code class="language-java">@RestController
+public class StudentController {
+    List&lt;Student&gt; studentList = List.of(
+        new Student(0, "John"),
+        new Student(1, "Jane")
+    );
+	
+    @GetMapping("/student/{id}")
+    public Student getStudent(@PathVariable int id) {		
+        return _____________
+    }	
+}</code></pre>
+ </body>
+</html>
