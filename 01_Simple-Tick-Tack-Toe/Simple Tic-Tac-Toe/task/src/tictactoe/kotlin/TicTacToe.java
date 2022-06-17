@@ -14,6 +14,7 @@ public class TicTacToe {
     final char EX = 'X';
     final int COLS = 8;
     final int ROWS = 4;
+    final int TWO = 2;
     final Scanner scanner = new Scanner(System.in);
     final List<Integer> indexCol = List.of(2, 4, 6);
     final List<Integer> indexRow = List.of(1, 2, 3);
@@ -23,11 +24,11 @@ public class TicTacToe {
     public void startTicTacToeGame() {
         boardList = createBoard(getUserInput());
         printGameBoard(boardList);
-        System.out.println("Vertical game: " + findVerticalGame(boardList));
-        System.out.println("Horizontal game: " + findHorizontalGame(boardList));
-        System.out.println("Diagonal game: " + findDiagonalGame(boardList));
-        System.out.println("Empty space: " + findEmptySpace(boardList));
-        System.out.println("Difference: " + findDifference(boardList));
+        // System.out.println("Vertical game: " + findVerticalGame(boardList));
+        // System.out.println("Horizontal game: " + findHorizontalGame(boardList));
+        // System.out.println("Diagonal game: " + findDiagonalGame(boardList));
+        // System.out.println("Empty space: " + findEmptySpace(boardList));
+        // System.out.println("Difference: " + findDifference(boardList));
 
         // verifica e imprime el resultado del juego
         checkGame(boardList);
@@ -78,21 +79,27 @@ public class TicTacToe {
         // X wins: juego para X
         // O wins: juego para O
         // Impossible: existe juego para X y O
-        // o la diferencia entre X y O es igual o mayour que 2
+        // o la diferencia entre X y O es igual o mayor que 2
 
         // verifica que alguien gano
-        boolean winner = vertical.size() == 2 || horizontal.size() == 2 || diagonal != SPACE;
+        boolean winner = vertical.size() == TWO || horizontal.size() == TWO || diagonal != SPACE;
+        boolean twoGames = vertical.size() > TWO || horizontal.size() > TWO;
         if (winner) {
-            // busca cual fue el ganador
             char winnerChar = diagonal;
-            if (vertical.size() == 2) {
+            if (vertical.size() == TWO) {
                 winnerChar = vertical.get(1);
-            } else if (horizontal.size() == 2) {
+            } else if (horizontal.size() == TWO) {
                 winnerChar = horizontal.get(1);
             }
             System.out.println(winnerChar + " wins");
+        } else if (twoGames || difference > 1) {
+            System.out.println("Impossible");
         } else {
-            System.out.println("No game");
+            if (empty) {
+                System.out.println("Game not finished");
+            } else {
+                System.out.println("Draw");
+            }
         }
     }
 
