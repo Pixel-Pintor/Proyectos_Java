@@ -303,7 +303,7 @@ files:
         }
     }
   learner_created: true
-- name: src/tictactoe/kotlin/TicTacToe.java
+- name: src/tictactoe/java/TicTacToe.java
   visible: true
   text: |
     package tictactoe.kotlin;

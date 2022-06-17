@@ -1,6 +1,6 @@
 package tictactoe;
 
-import tictactoe.kotlin.TicTacToe;
+import tictactoe.java.TicTacToe;
 
 public class Main {
 

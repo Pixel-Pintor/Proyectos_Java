@@ -1,4 +1,4 @@
-package tictactoe.kotlin;
+package tictactoe.java;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,26 @@ public class TicTacToe {
     public void startTicTacToeGame() {
         boardList = createBoard(getUserInput());
         printGameBoard(boardList);
+        boolean validCoord = false;
+        do {
+            List<String> coordinates = getCoordinates();
+            if (checkCoordinates(coordinates)) {
+                setPlayInBoardList(coordinates); // las convierte en entero
+                printGameBoard(boardList);
+                validCoord = true;
+            }
+        } while (!validCoord);
+        System.out.println("End of program");
+        /*
+        START
+        DO
+            VAR coordenadas = solicitarCoordenadas()
+            IF verificarCoordenadas()
+                insertarCaracterEnTabla()
+                imprimirTablero()
+        WHILE !verificarCoordenadas()
+        STOP
+         */
         // System.out.println("Vertical game: " + findVerticalGame(boardList));
         // System.out.println("Horizontal game: " + findHorizontalGame(boardList));
         // System.out.println("Diagonal game: " + findDiagonalGame(boardList));
@@ -101,6 +121,48 @@ public class TicTacToe {
                 System.out.println("Draw");
             }
         }
+    }
+
+    private List<String> getCoordinates() {
+        System.out.print("Enter the coordinates: ");
+        return List.of(scanner.nextLine().split(" "));
+    }
+
+    private boolean checkCoordinates(List<String> coordinates) {
+        int numX;
+        int numY;
+        boolean validCoord = false;
+        List<Integer> converted = convertCoordinatesToInteger(coordinates);
+        if (!converted.isEmpty()) {
+            numX = converted.get(0);
+            numY = converted.get(1);
+            if (indexRow.contains(numX) && numY >= 1 && numY <= 3) {
+                numY = indexCol.get(numY - 1);
+                if (boardList.get(numX).get(numY) == SUB) {
+                    validCoord = true;
+                } else {
+                    System.out.println("This cell is occupied! Choose another one!");
+                }
+            } else {
+                System.out.println("Coordinates should be from 1 to 3!");
+            }
+        } else {
+            System.out.println("You Should enter numbers!");
+        }
+        return validCoord;
+    }
+
+    private List<Integer> convertCoordinatesToInteger(List<String> coordinates) {
+        List<Integer> numbers = new ArrayList<>();
+        try {
+            numbers.add(Integer.parseInt(coordinates.get(0)));
+            numbers.add(Integer.parseInt(coordinates.get(1)));
+        } catch (Exception ignored) {}
+        return numbers.size() == TWO ? numbers : new ArrayList<>();
+    }
+
+    private void setPlayInBoardList(List<String> coordinates) {
+        // pone la ficha en la coordenada introducida por el usuario
     }
 
     private void printGameBoard(List<List<Character>> boardList) {
