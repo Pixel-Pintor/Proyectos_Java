@@ -18,7 +18,7 @@ public class TicTacToe {
     final List<Integer> indexCol = List.of(2, 4, 6);
     final List<Integer> indexRow = List.of(1, 2, 3);
 
-    ArrayList<ArrayList<Character>> boardList;
+    List<List<Character>> boardList;
 
     public void startTicTacToeGame() {
         boardList = createBoard(getUserInput());
@@ -27,6 +27,10 @@ public class TicTacToe {
         System.out.println("Horizontal game: " + findHorizontalGame(boardList));
         System.out.println("Diagonal game: " + findDiagonalGame(boardList));
         System.out.println("Empty space: " + findEmptySpace(boardList));
+        System.out.println("Difference: " + findDifference(boardList));
+
+        // verifica e imprime el resultado del juego
+        checkGame(boardList);
     }
 
     private String getUserInput() {
@@ -34,12 +38,12 @@ public class TicTacToe {
         return scanner.nextLine();
     }
 
-    private ArrayList<ArrayList<Character>> createBoard(String input) {
+    private List<List<Character>> createBoard(String input) {
         int index = 0;
         char[] inputArray = input.toCharArray();
-        ArrayList<ArrayList<Character>> boardList = new ArrayList<>();
+        List<List<Character>> boardList = new ArrayList<>();
         for (int i = 0; i <= ROWS; i++) {
-            ArrayList<Character> listRow = new ArrayList<>();
+            List<Character> listRow = new ArrayList<>();
             for (int j = 0; j <= COLS; j++) {
                 if (i == 0 || i == ROWS) {
                     listRow.add(DASH);
@@ -56,8 +60,44 @@ public class TicTacToe {
         return boardList;
     }
 
-    private void printGameBoard(ArrayList<ArrayList<Character>> boardList) {
-        for (ArrayList<Character> characters : boardList) {
+    private void checkGame(List<List<Character>> boardList) {
+        // verifica el juego vertical
+        List<Character> vertical = findVerticalGame(boardList);
+        // verifica el juego horizontal
+        List<Character> horizontal = findHorizontalGame(boardList);
+        // verifica el juego diagonal
+        char diagonal = findDiagonalGame(boardList);
+        // verifica un espacio vacio
+        boolean empty = findEmptySpace(boardList);
+        // verifica la diferencia de cantidad entre x y O
+        int difference = findDifference(boardList);
+
+        // Existe una ficha ganadora
+        // Game not finished: no hay ningun juego y existen espacios vacio
+        // Draw: no hay ningun juego y no existen espacios vacios
+        // X wins: juego para X
+        // O wins: juego para O
+        // Impossible: existe juego para X y O
+        // o la diferencia entre X y O es igual o mayour que 2
+
+        // verifica que alguien gano
+        boolean winner = vertical.size() == 2 || horizontal.size() == 2 || diagonal != SPACE;
+        if (winner) {
+            // busca cual fue el ganador
+            char winnerChar = diagonal;
+            if (vertical.size() == 2) {
+                winnerChar = vertical.get(1);
+            } else if (horizontal.size() == 2) {
+                winnerChar = horizontal.get(1);
+            }
+            System.out.println(winnerChar + " wins");
+        } else {
+            System.out.println("No game");
+        }
+    }
+
+    private void printGameBoard(List<List<Character>> boardList) {
+        for (List<Character> characters : boardList) {
             for (Character character : characters) {
                 System.out.print(character);
             }
@@ -65,18 +105,17 @@ public class TicTacToe {
         }
     }
 
-    private ArrayList<Character> findVerticalGame(ArrayList<ArrayList<Character>> boardList) {
-        // capturar caracter inicial y la columna
+    private List<Character> findVerticalGame(List<List<Character>> boardList) {
         char firstChar;
-        ArrayList<Character> charArray = new ArrayList<>();
+        List<Character> charArray = new ArrayList<>();
         charArray.add(SPACE);
-        for (int i = 0; i < 1; i++) { // estoy en la primera fila
-            for (int j = 0; j < 3; j++) { // recorre las tres columnas
-                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j)); // obtiene el caracter
+        for (int i = 0; i < 1; i++) {
+            for (int j = 0; j < 3; j++) {
+                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j));
                 if (firstChar == OU || firstChar == EX) {
-                    if (firstChar == boardList.get(indexRow.get(i) + 1).get(indexCol.get(j))) { // si el primer caracter es igual al segundo y al tercero
+                    if (firstChar == boardList.get(indexRow.get(i) + 1).get(indexCol.get(j))) {
                         if (firstChar == boardList.get(indexRow.get(i) + 2).get(indexCol.get(j))) {
-                            charArray.add(firstChar); // agrega el caracter si existe juego vertical
+                            charArray.add(firstChar);
                         }
                     }
                 }
@@ -85,17 +124,17 @@ public class TicTacToe {
         return charArray;
     }
 
-    private ArrayList<Character> findHorizontalGame(ArrayList<ArrayList<Character>> boardList) {
+    private List<Character> findHorizontalGame(List<List<Character>> boardList) {
         char firstChar;
-        ArrayList<Character> charArray = new ArrayList<>();
+        List<Character> charArray = new ArrayList<>();
         charArray.add(SPACE);
-        for (int i = 0; i < 3; i++) { // recorre las tres filas
-            for (int j = 0; j < 1; j++) { // me quedo en la primera columna
-                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j)); // captura el caracter
-                if (firstChar == OU || firstChar == EX) { //
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 1; j++) {
+                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j));
+                if (firstChar == OU || firstChar == EX) {
                     if (firstChar == boardList.get(indexRow.get(i)).get(indexCol.get(j + 1))) {
                         if (firstChar == boardList.get(indexRow.get(i)).get(indexCol.get(j + 2))) {
-                            charArray.add(firstChar); // agrega el caracter si existe juego horizontal
+                            charArray.add(firstChar);
                         }
                     }
                 }
@@ -104,15 +143,14 @@ public class TicTacToe {
         return charArray;
     }
 
-    private char findDiagonalGame(ArrayList<ArrayList<Character>> boardList) {
-        // verifica si existe un juego diagonal descendente - XOOOXOOOX
-        char firstChar; // indexCol = List.of(2, 4, 6); indexRow = List.of(1, 2, 3);
+    private char findDiagonalGame(List<List<Character>> boardList) {
+        char firstChar;
         for (int i = 0; i < 1; i++) {
             for (int j = 0; j < 1; j++) {
-                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j)); // fila 1 - columna 2
+                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j));
                 if (firstChar == OU || firstChar == EX) {
-                    if (firstChar == boardList.get(indexRow.get(i + 1)).get(indexCol.get(j + 1))) { // fila 2 - columna 4
-                        if (firstChar == boardList.get(indexRow.get(i + 2)).get(indexCol.get(j + 2))) { // fila 3 - columna 6
+                    if (firstChar == boardList.get(indexRow.get(i + 1)).get(indexCol.get(j + 1))) {
+                        if (firstChar == boardList.get(indexRow.get(i + 2)).get(indexCol.get(j + 2))) {
                             return firstChar;
                         }
                     }
@@ -120,13 +158,12 @@ public class TicTacToe {
             }
         }
 
-        // verifica si existe un juego diagonal ascendente - XXOXOXOXX
         for (int i = 0; i < 1; i++) {
             for (int j = 2; j > 1; j--) {
-                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j)); // fila 1 - columna 6
+                firstChar = boardList.get(indexRow.get(i)).get(indexCol.get(j));
                 if (firstChar == OU || firstChar == EX) {
-                    if (firstChar == boardList.get(indexRow.get(i + 1)).get(indexCol.get(j - 1))) { // fila 2 - columna 4
-                        if (firstChar == boardList.get(indexRow.get(i + 2)).get(indexCol.get(j - 2))) { // file 3 - columna 6
+                    if (firstChar == boardList.get(indexRow.get(i + 1)).get(indexCol.get(j - 1))) {
+                        if (firstChar == boardList.get(indexRow.get(i + 2)).get(indexCol.get(j - 2))) {
                             return firstChar;
                         }
                     }
@@ -134,12 +171,11 @@ public class TicTacToe {
             }
         }
 
-        // retorna el caracter ganador o espacio si no hay ninguno
         return SPACE;
     }
 
-    private boolean findEmptySpace(ArrayList<ArrayList<Character>> boardList) {
-        for (ArrayList<Character> characters : boardList) {
+    private boolean findEmptySpace(List<List<Character>> boardList) {
+        for (List<Character> characters : boardList) {
             for (Character character : characters) {
                 if (character == SUB) {
                     return true;
@@ -147,5 +183,20 @@ public class TicTacToe {
             }
         }
         return false;
+    }
+
+    private int findDifference(List<List<Character>> boardList) {
+        int exes = 0;
+        int ous = 0;
+        for (List<Character> characters : boardList) {
+            for (Character character : characters) {
+                if (character == EX) {
+                    exes++;
+                } else if (character == OU) {
+                    ous++;
+                }
+            }
+        }
+        return Math.abs(exes - ous);
     }
 }
