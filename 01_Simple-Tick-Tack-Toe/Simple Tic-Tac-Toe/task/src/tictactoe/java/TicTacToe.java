@@ -9,7 +9,6 @@ public class TicTacToe {
     final char DASH = '-';
     final char PLEAT = '|';
     final char SPACE = ' ';
-    final char SUB = '_';
     final char OU = 'O';
     final char EX = 'X';
     final int COLS = 8;
@@ -20,46 +19,26 @@ public class TicTacToe {
     final List<Integer> indexRow = List.of(1, 2, 3);
 
     List<List<Character>> boardList;
+    boolean firstPlayer = true;
 
     public void startTicTacToeGame() {
-        boardList = createBoard(getUserInput());
+        boolean endGame = false;
+        boardList = createEmptyBoard();
         printGameBoard(boardList);
-        boolean validCoord = false;
         do {
             List<String> coordinates = getCoordinates();
             if (checkCoordinates(coordinates)) {
                 printGameBoard(boardList);
-                validCoord = true;
+                if (checkGame(boardList)) {
+                    endGame = true;
+                } else {
+                    firstPlayer = !firstPlayer;
+                }
             }
-        } while (!validCoord);
-        /*
-        START
-        DO
-            VAR coordenadas = solicitarCoordenadas()
-            IF verificarCoordenadas()
-                insertarCaracterEnTabla()
-                imprimirTablero()
-        WHILE !verificarCoordenadas()
-        STOP
-         */
-        // System.out.println("Vertical game: " + findVerticalGame(boardList));
-        // System.out.println("Horizontal game: " + findHorizontalGame(boardList));
-        // System.out.println("Diagonal game: " + findDiagonalGame(boardList));
-        // System.out.println("Empty space: " + findEmptySpace(boardList));
-        // System.out.println("Difference: " + findDifference(boardList));
-
-        // verifica e imprime el resultado del juego
-        // checkGame(boardList);
+        } while (!endGame);
     }
 
-    private String getUserInput() {
-        System.out.print("Enter cells: ");
-        return scanner.nextLine();
-    }
-
-    private List<List<Character>> createBoard(String input) {
-        int index = 0;
-        char[] inputArray = input.toCharArray();
+    private List<List<Character>> createEmptyBoard() {
         List<List<Character>> boardList = new ArrayList<>();
         for (int i = 0; i <= ROWS; i++) {
             List<Character> listRow = new ArrayList<>();
@@ -68,8 +47,6 @@ public class TicTacToe {
                     listRow.add(DASH);
                 } else if (j == 0 || j == COLS) {
                     listRow.add(PLEAT);
-                } else if (indexCol.contains(j)) {
-                    listRow.add(inputArray[index++]);
                 } else {
                     listRow.add(SPACE);
                 }
@@ -79,29 +56,16 @@ public class TicTacToe {
         return boardList;
     }
 
-    private void checkGame(List<List<Character>> boardList) {
-        // verifica el juego vertical
+    private boolean checkGame(List<List<Character>> boardList) {
+        boolean endGame = false;
         List<Character> vertical = findVerticalGame(boardList);
-        // verifica el juego horizontal
         List<Character> horizontal = findHorizontalGame(boardList);
-        // verifica el juego diagonal
         char diagonal = findDiagonalGame(boardList);
-        // verifica un espacio vacio
         boolean empty = findEmptySpace(boardList);
-        // verifica la diferencia de cantidad entre x y O
-        int difference = findDifference(boardList);
 
-        // Existe una ficha ganadora
-        // Game not finished: no hay ningun juego y existen espacios vacio
-        // Draw: no hay ningun juego y no existen espacios vacios
-        // X wins: juego para X
-        // O wins: juego para O
-        // Impossible: existe juego para X y O
-        // o la diferencia entre X y O es igual o mayor que 2
-
-        // verifica que alguien gano
         boolean winner = vertical.size() == TWO || horizontal.size() == TWO || diagonal != SPACE;
         boolean twoGames = vertical.size() > TWO || horizontal.size() > TWO;
+
         if (winner) {
             char winnerChar = diagonal;
             if (vertical.size() == TWO) {
@@ -110,15 +74,12 @@ public class TicTacToe {
                 winnerChar = horizontal.get(1);
             }
             System.out.println(winnerChar + " wins");
-        } else if (twoGames || difference > 1) {
-            System.out.println("Impossible");
-        } else {
-            if (empty) {
-                System.out.println("Game not finished");
-            } else {
-                System.out.println("Draw");
-            }
+            endGame = true;
+        } else if (twoGames || !empty) {
+            System.out.println("Draw");
+            endGame = true;
         }
+        return endGame;
     }
 
     private List<String> getCoordinates() {
@@ -136,8 +97,7 @@ public class TicTacToe {
             numY = converted.get(1);
             if (indexRow.contains(numX) && numY >= 1 && numY <= 3) {
                 numY = indexCol.get(numY - 1);
-                if (boardList.get(numX).get(numY) == SUB) {
-                    // establece la jugadd
+                if (boardList.get(numX).get(numY) == SPACE) {
                     setPlayInBoardList(numX, numY);
                     validCoord = true;
                 } else {
@@ -162,10 +122,11 @@ public class TicTacToe {
     }
 
     private void setPlayInBoardList(int numX, int numY) {
+        char simbol = firstPlayer ? EX : OU;
         for (int i = 0; i < boardList.size(); i++) {
             for (int j = 0; j < boardList.get(i).size(); j++) {
                 if (i == numX && j == numY) {
-                    boardList.get(numX).set(numY, EX);
+                    boardList.get(numX).set(numY, simbol);
                 }
             }
         }
@@ -245,33 +206,17 @@ public class TicTacToe {
                 }
             }
         }
-
         return SPACE;
     }
 
     private boolean findEmptySpace(List<List<Character>> boardList) {
         for (List<Character> characters : boardList) {
-            for (Character character : characters) {
-                if (character == SUB) {
+            for (int j = 0; j < characters.size(); j++) {
+                if (indexCol.contains(j) && characters.get(j) == SPACE) {
                     return true;
                 }
             }
         }
         return false;
-    }
-
-    private int findDifference(List<List<Character>> boardList) {
-        int exes = 0;
-        int ous = 0;
-        for (List<Character> characters : boardList) {
-            for (Character character : characters) {
-                if (character == EX) {
-                    exes++;
-                } else if (character == OU) {
-                    ous++;
-                }
-            }
-        }
-        return Math.abs(exes - ous);
     }
 }
