@@ -28,12 +28,10 @@ public class TicTacToe {
         do {
             List<String> coordinates = getCoordinates();
             if (checkCoordinates(coordinates)) {
-                setPlayInBoardList(coordinates); // las convierte en entero
                 printGameBoard(boardList);
                 validCoord = true;
             }
         } while (!validCoord);
-        System.out.println("End of program");
         /*
         START
         DO
@@ -51,7 +49,7 @@ public class TicTacToe {
         // System.out.println("Difference: " + findDifference(boardList));
 
         // verifica e imprime el resultado del juego
-        checkGame(boardList);
+        // checkGame(boardList);
     }
 
     private String getUserInput() {
@@ -139,6 +137,8 @@ public class TicTacToe {
             if (indexRow.contains(numX) && numY >= 1 && numY <= 3) {
                 numY = indexCol.get(numY - 1);
                 if (boardList.get(numX).get(numY) == SUB) {
+                    // establece la jugadd
+                    setPlayInBoardList(numX, numY);
                     validCoord = true;
                 } else {
                     System.out.println("This cell is occupied! Choose another one!");
@@ -161,8 +161,14 @@ public class TicTacToe {
         return numbers.size() == TWO ? numbers : new ArrayList<>();
     }
 
-    private void setPlayInBoardList(List<String> coordinates) {
-        // pone la ficha en la coordenada introducida por el usuario
+    private void setPlayInBoardList(int numX, int numY) {
+        for (int i = 0; i < boardList.size(); i++) {
+            for (int j = 0; j < boardList.get(i).size(); j++) {
+                if (i == numX && j == numY) {
+                    boardList.get(numX).set(numY, EX);
+                }
+            }
+        }
     }
 
     private void printGameBoard(List<List<Character>> boardList) {
