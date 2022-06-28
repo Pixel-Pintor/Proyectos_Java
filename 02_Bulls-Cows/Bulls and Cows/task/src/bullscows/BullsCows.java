@@ -1,38 +1,44 @@
 package bullscows;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class BullsCows {
 
     private final Scanner scanner = new Scanner(System.in);
-    private int numToGuess;
-    private int inputNumber;
+    private long numToGuess;
+    private int turns = 0;
+    boolean gameOn = true;
 
     public void startGame() {
         generateNumToGuess();
-        getInputNumber();
-        playBullsAndCows(inputNumber);
+        System.out.println("Okay, let's start a game!");
+        // System.out.println("Number: " + numToGuess);
+        do {
+            System.out.printf("Turn %d:\n", ++turns);
+            long inputNumber = getInputNumber(); // numero del usuario
+            List<Integer> bullsCows = checkInputNumber(inputNumber);
+            printBullsAndCows(bullsCows);
+        } while (gameOn);
+        System.out.println("Congratulations! You guessed the secret code.");
     }
 
-    private void getInputNumber() {
-        inputNumber = scanner.nextInt();
+    private long getInputNumber() {
+        return scanner.nextLong();
     }
 
     private void generateNumToGuess() {
 
-        int lower = 1111;
-        int upper = 9999;
-        Random random = new Random();
-        int intervalLength = upper - lower + 1;
-
-        numToGuess = random.nextInt(intervalLength) + lower;
+        NumGenerator numGenerator = new NumGenerator();
+        numToGuess = numGenerator.setSecretCode();
     }
 
-    private void playBullsAndCows(int number) {
+    private List<Integer> checkInputNumber(long number) {
 
         int bulls = 0;
         int cows = 0;
+        List<Integer> numbers = new ArrayList<>();
 
         char[] digitsToGuess = String.valueOf(numToGuess).toCharArray();
         char[] answer = String.valueOf(number).toCharArray();
@@ -46,9 +52,32 @@ public class BullsCows {
             }
         }
 
-        if (bulls == 0 && cows == 0)
-            System.out.printf("Grade: None. The secret code is %d.", numToGuess);
-        else
-            System.out.printf("Grade: %d bull(s) and %d cow(s). The secret code is %d.", bulls, cows, numToGuess);
+        numbers.add(bulls);
+        numbers.add(cows);
+        return numbers;
+    }
+
+    private void printBullsAndCows(List<Integer> bullsCows) {
+
+        int bulls = bullsCows.get(0);
+        int cows = bullsCows.get(1);
+        StringBuilder outputString = new StringBuilder("Grade: ");
+        String outBulls = bulls > 1 ? "bulls" : bulls == 1 ? "bull" : "bulls";
+        String outCows = cows > 1 ? "cows" : cows == 1 ? "cow" : "";
+
+        outputString.append(bulls)
+                .append(" ")
+                .append(outBulls)
+                .append(" ");
+
+        if (cows != 0)
+            outputString.append(cows)
+                    .append(" ")
+                    .append(outCows);
+
+        String strToGuess = String.valueOf(numToGuess);
+        if (bulls == strToGuess.length())
+            gameOn = false;
+        System.out.println(outputString);
     }
 }

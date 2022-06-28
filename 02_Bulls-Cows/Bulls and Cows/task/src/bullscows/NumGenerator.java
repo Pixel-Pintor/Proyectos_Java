@@ -11,23 +11,27 @@ public class NumGenerator {
             new StringBuilder("Error: can't generate a secret " +
                     "number with a length of  because there aren't " +
                     "enough unique digits.");
-    private final StringBuilder SUCCESS = new StringBuilder("The random secret number is .");
     private final Scanner scanner = new Scanner(System.in);
     private long secretCode;
 
-    public void startNumberGenerator() {
-        int lengthCode = getCodeLength();
-        if (lengthCode > MAX || lengthCode < 1) {
-            ERROR.insert(55, lengthCode);
-            System.out.println(ERROR);
-        } else {
-            generateSecretCode(lengthCode);
-            SUCCESS.insert(28, secretCode);
-            System.out.println(SUCCESS);
-        }
+    public long setSecretCode() {
+        int lengthCode;
+        boolean valid = false;
+        do {
+            lengthCode = getCodeLength();
+            if (lengthCode > MAX || lengthCode < 1) {
+                ERROR.insert(55, lengthCode);
+                System.out.println(ERROR);
+            } else {
+                generateSecretCode(lengthCode);
+                valid = true;
+            }
+        } while (!valid);
+        return secretCode;
     }
 
     private int getCodeLength() {
+        System.out.println("Please, enter the secret code's length:");
         return scanner.nextInt();
     }
 
