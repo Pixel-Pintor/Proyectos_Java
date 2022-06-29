@@ -2,6 +2,7 @@ package bullscows;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class BullsCows {
@@ -17,15 +18,15 @@ public class BullsCows {
         // System.out.println("Number: " + numToGuess);
         do {
             System.out.printf("Turn %d:\n", ++turns);
-            long inputNumber = getInputNumber(); // numero del usuario
+            String inputNumber = getInputNumber(); // numero del usuario
             List<Integer> bullsCows = checkInputNumber(inputNumber);
             printBullsAndCows(bullsCows);
         } while (gameOn);
         System.out.println("Congratulations! You guessed the secret code.");
     }
 
-    private long getInputNumber() {
-        return scanner.nextLong();
+    private String getInputNumber() {
+        return scanner.nextLine();
     }
 
     private void generateNumToGuess() {
@@ -34,21 +35,24 @@ public class BullsCows {
         numToGuess = numGenerator.setSecretCode();
     }
 
-    private List<Integer> checkInputNumber(long number) {
+    private List<Integer> checkInputNumber(String number) {
 
         int bulls = 0;
         int cows = 0;
         List<Integer> numbers = new ArrayList<>();
 
-        char[] digitsToGuess = String.valueOf(numToGuess).toCharArray();
-        char[] answer = String.valueOf(number).toCharArray();
+        List<String> digitsToGuess = List.of(String.valueOf(numToGuess).split(""));
+        List<String> answer = List.of(number.split(""));
 
-        for (int i = 0; i < digitsToGuess.length; i++) {
-            for (int j = 0; j < answer.length; j++) {
-                if (i == j && digitsToGuess[i] == answer[j])
+        for (String s : answer) {
+            if (digitsToGuess.contains(s))
+                cows++;
+        }
+
+        for (int i = 0; i < digitsToGuess.size(); i++) {
+            for (int j = 0; j < digitsToGuess.size(); j++) {
+                if (j == i && Objects.equals(digitsToGuess.get(i), answer.get(j)))
                     bulls++;
-                else if (i != j && digitsToGuess[i] == answer[j])
-                    cows++;
             }
         }
 
@@ -61,19 +65,16 @@ public class BullsCows {
 
         int bulls = bullsCows.get(0);
         int cows = bullsCows.get(1);
-        StringBuilder outputString = new StringBuilder("Grade: ");
-        String outBulls = bulls > 1 ? "bulls" : bulls == 1 ? "bull" : "bulls";
-        String outCows = cows > 1 ? "cows" : cows == 1 ? "cow" : "";
+        String outBulls = bulls != 1 ? "bulls" : "bull";
+        String outCows = cows != 1 ? "cows" : "cow";
 
-        outputString.append(bulls)
-                .append(" ")
-                .append(outBulls)
-                .append(" ");
-
-        if (cows != 0)
-            outputString.append(cows)
-                    .append(" ")
-                    .append(outCows);
+        String outputString = "Grade: " + bulls +
+                " " +
+                outBulls +
+                " " +
+                cows +
+                " " +
+                outCows;
 
         String strToGuess = String.valueOf(numToGuess);
         if (bulls == strToGuess.length())

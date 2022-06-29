@@ -5,7 +5,6 @@ public class Main {
         BullsCows newGame = new BullsCows();
         newGame.startGame();
     }
-
 }
 
 /*

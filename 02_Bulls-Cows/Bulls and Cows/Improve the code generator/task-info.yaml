@@ -250,6 +250,167 @@ files:
         }
     }
   learner_created: false
+- name: src/bullscows/BullsCows.java
+  visible: true
+  text: |
+    package bullscows;
+
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Scanner;
+
+    public class BullsCows {
+
+        private final Scanner scanner = new Scanner(System.in);
+        private long numToGuess;
+        private int turns = 0;
+        boolean gameOn = true;
+
+        public void startGame() {
+            generateNumToGuess();
+            System.out.println("Okay, let's start a game!");
+            // System.out.println("Number: " + numToGuess);
+            do {
+                System.out.printf("Turn %d:\n", ++turns);
+                long inputNumber = getInputNumber(); // numero del usuario
+                List<Integer> bullsCows = checkInputNumber(inputNumber);
+                printBullsAndCows(bullsCows);
+            } while (gameOn);
+            System.out.println("Congratulations! You guessed the secret code.");
+        }
+
+        private long getInputNumber() {
+            return scanner.nextLong();
+        }
+
+        private void generateNumToGuess() {
+
+            NumGenerator numGenerator = new NumGenerator();
+            numToGuess = numGenerator.setSecretCode();
+        }
+
+        private List<Integer> checkInputNumber(long number) {
+
+            int bulls = 0;
+            int cows = 0;
+            List<Integer> numbers = new ArrayList<>();
+
+            char[] digitsToGuess = String.valueOf(numToGuess).toCharArray();
+            char[] answer = String.valueOf(number).toCharArray();
+
+            for (int i = 0; i < digitsToGuess.length; i++) {
+                for (int j = 0; j < answer.length; j++) {
+                    if (i == j && digitsToGuess[i] == answer[j])
+                        bulls++;
+                    else if (i != j && digitsToGuess[i] == answer[j])
+                        cows++;
+                }
+            }
+
+            numbers.add(bulls);
+            numbers.add(cows);
+            return numbers;
+        }
+
+        private void printBullsAndCows(List<Integer> bullsCows) {
+
+            int bulls = bullsCows.get(0);
+            int cows = bullsCows.get(1);
+            StringBuilder outputString = new StringBuilder("Grade: ");
+            String outBulls = bulls > 1 ? "bulls" : bulls == 1 ? "bull" : "bulls";
+            String outCows = cows > 1 ? "cows" : cows == 1 ? "cow" : "";
+
+            outputString.append(bulls)
+                    .append(" ")
+                    .append(outBulls)
+                    .append(" ");
+
+            if (cows != 0)
+                outputString.append(cows)
+                        .append(" ")
+                        .append(outCows);
+
+            String strToGuess = String.valueOf(numToGuess);
+            if (bulls == strToGuess.length())
+                gameOn = false;
+            System.out.println(outputString);
+        }
+    }
+  learner_created: true
+- name: src/bullscows/NumGenerator.java
+  visible: true
+  text: |-
+    package bullscows;
+
+    import java.util.ArrayList;
+    import java.util.Random;
+    import java.util.Scanner;
+
+    public class NumGenerator {
+
+        private final int MAX = 10;
+        private final StringBuilder ERROR =
+                new StringBuilder("Error: can't generate a secret " +
+                        "number with a length of  because there aren't " +
+                        "enough unique digits.");
+        private final Scanner scanner = new Scanner(System.in);
+        private long secretCode;
+
+        public long setSecretCode() {
+            int lengthCode;
+            boolean valid = false;
+            do {
+                lengthCode = getCodeLength();
+                if (lengthCode > MAX || lengthCode < 1) {
+                    ERROR.insert(55, lengthCode);
+                    System.out.println(ERROR);
+                } else {
+                    generateSecretCode(lengthCode);
+                    valid = true;
+                }
+            } while (!valid);
+            return secretCode;
+        }
+
+        private int getCodeLength() {
+            System.out.println("Please, enter the secret code's length:");
+            return scanner.nextInt();
+        }
+
+        private void generateSecretCode(int lengthCode) {
+
+            int number;
+            StringBuilder stringBuilder = new StringBuilder();
+            ArrayList<Integer> finalNum = new ArrayList<>();
+            Random random = new Random();
+            int ZERO = 0;
+            int index = ZERO;
+
+            while (index < lengthCode) {
+                number = random.nextInt(MAX);
+                if (index == ZERO && number == ZERO) {
+                    while (number == ZERO) {
+                        number = random.nextInt(MAX);
+                    }
+                    finalNum.add(number);
+                    index++;
+                } else if (!finalNum.contains(number)) {
+                    finalNum.add(number);
+                    index++;
+                }
+            }
+
+            for (int num : finalNum) {
+                stringBuilder.append(num);
+            }
+
+            secretCode = Long.parseLong(stringBuilder.toString());
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5433#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 29 Jun 2022 13:42:15 UTC
 record: -1
