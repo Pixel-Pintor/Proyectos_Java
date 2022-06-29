@@ -11,18 +11,19 @@ public class BullsCows {
     private String numToGuess;
     private int turns = 0;
     boolean gameOn = true;
+    boolean gameWin = false;
 
     public void startGame() {
         generateNumToGuess();
-        System.out.println("Okay, let's start a game!");
         // System.out.println("Number: " + numToGuess);
-        do {
+        while (gameOn) {
             System.out.printf("Turn %d:\n", ++turns);
             String inputNumber = getInputNumber(); // numero del usuario
             List<Integer> bullsCows = checkInputNumber(inputNumber);
             printBullsAndCows(bullsCows);
-        } while (gameOn);
-        System.out.println("Congratulations! You guessed the secret code.");
+        }
+        if (gameWin)
+            System.out.println("Congratulations! You guessed the secret code.");
     }
 
     private String getInputNumber() {
@@ -33,6 +34,10 @@ public class BullsCows {
 
         CodeGenerator numGenerator = new CodeGenerator();
         numToGuess = numGenerator.setSecretCode();
+        if (Objects.equals(numToGuess, "None"))
+            gameOn = false;
+        else
+            System.out.println("Okay, let's start a game!");
     }
 
     private List<Integer> checkInputNumber(String number) {
@@ -76,8 +81,10 @@ public class BullsCows {
                 " " +
                 outCows;
 
-        if (bulls == numToGuess.length())
+        if (bulls == numToGuess.length()) {
             gameOn = false;
+            gameWin = true;
+        }
         System.out.println(outputString);
     }
 }

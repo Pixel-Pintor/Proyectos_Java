@@ -8,6 +8,7 @@
       <module name="02_Bulls-Cows.Bulls_and_Cows-task-build-reports-tests.main" target="11" />
       <module name="02_Bulls-Cows.Bulls_and_Cows-task-build-test-results.main" target="11" />
       <module name="02_Bulls-Cows.Bulls_and_Cows-task-build-tmp.main" target="11" />
+      <module name="02_Bulls-Cows.Bulls_and_Cows-task-out.main" target="11" />
       <module name="02_Bulls-Cows.Bulls_and_Cows-task.main" target="11" />
       <module name="02_Bulls-Cows.Topics-Math_library-Heron's_formula.main" target="11" />
       <module name="02_Bulls-Cows.Topics-Math_library-Theory.main" target="11" />
