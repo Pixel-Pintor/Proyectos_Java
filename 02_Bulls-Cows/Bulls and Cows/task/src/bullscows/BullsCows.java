@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class BullsCows {
 
     private final Scanner scanner = new Scanner(System.in);
-    private long numToGuess;
+    private String numToGuess;
     private int turns = 0;
     boolean gameOn = true;
 
@@ -31,7 +31,7 @@ public class BullsCows {
 
     private void generateNumToGuess() {
 
-        NumGenerator numGenerator = new NumGenerator();
+        CodeGenerator numGenerator = new CodeGenerator();
         numToGuess = numGenerator.setSecretCode();
     }
 
@@ -41,7 +41,7 @@ public class BullsCows {
         int cows = 0;
         List<Integer> numbers = new ArrayList<>();
 
-        List<String> digitsToGuess = List.of(String.valueOf(numToGuess).split(""));
+        List<String> digitsToGuess = List.of(numToGuess.split(""));
         List<String> answer = List.of(number.split(""));
 
         for (String s : answer) {
@@ -76,8 +76,7 @@ public class BullsCows {
                 " " +
                 outCows;
 
-        String strToGuess = String.valueOf(numToGuess);
-        if (bulls == strToGuess.length())
+        if (bulls == numToGuess.length())
             gameOn = false;
         System.out.println(outputString);
     }
