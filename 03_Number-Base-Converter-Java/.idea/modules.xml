@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/03_Number-Base-Converter-Java.iml" filepath="$PROJECT_DIR$/.idea/modules/03_Number-Base-Converter-Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Number Base Converter/task/03_Number-Base-Converter-Java.Number_Base_Converter-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Number Base Converter/task/03_Number-Base-Converter-Java.Number_Base_Converter-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Number Base Converter/task/03_Number-Base-Converter-Java.Number_Base_Converter-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Number Base Converter/task/03_Number-Base-Converter-Java.Number_Base_Converter-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Number Base Converter/task/03_Number-Base-Converter-Java.Number_Base_Converter-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Number Base Converter/task/03_Number-Base-Converter-Java.Number_Base_Converter-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/03_Number-Base-Converter-Java.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/03_Number-Base-Converter-Java.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/03_Number-Base-Converter-Java.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/03_Number-Base-Converter-Java.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/03_Number-Base-Converter-Java.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/03_Number-Base-Converter-Java.util.test.iml" />
+    </modules>
+  </component>
+</project>

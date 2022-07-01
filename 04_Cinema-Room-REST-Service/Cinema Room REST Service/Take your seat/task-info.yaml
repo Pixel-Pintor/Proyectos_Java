@@ -223,38 +223,27 @@ files:
         };
     }
   learner_created: false
-- name: src/cinema/Seat.java
+- name: src/cinema/controller/RoomController.java
   visible: true
-  text: |
+  text: |-
     package cinema;
 
-    public class Seat {
-        int row;
-        int column;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.RestController;
 
-        public Seat(int row, int column) {
-            this.row = row;
-            this.column = column;
-        }
+    @RestController
+    public class RoomController {
+        private final Room cinemaRoom = new Room();
 
-        public int getRow() {
-            return row;
-        }
-
-        public void setRow(int row) {
-            this.row = row;
-        }
-
-        public int getColumn() {
-            return column;
-        }
-
-        public void setColumn(int column) {
-            this.column = column;
+        @GetMapping("/seats")
+        public ResponseEntity<Room> getSeats() {
+            return new ResponseEntity<>(cinemaRoom, HttpStatus.OK);
         }
     }
   learner_created: true
-- name: src/cinema/Room.java
+- name: src/cinema/model/RoomModel.java
   visible: true
   text: |
     package cinema;
@@ -307,26 +296,64 @@ files:
         }
     }
   learner_created: true
-- name: src/cinema/RoomController.java
+- name: src/cinema/model/SeatModel.java
   visible: true
-  text: |-
+  text: |
     package cinema;
 
-    import org.springframework.http.HttpStatus;
-    import org.springframework.http.ResponseEntity;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.RestController;
+    public class Seat {
+        int row;
+        int column;
 
-    @RestController
-    public class RoomController {
-        private final Room cinemaRoom = new Room();
+        public Seat(int row, int column) {
+            this.row = row;
+            this.column = column;
+        }
 
-        @GetMapping("/seats")
-        public ResponseEntity<Room> getSeats() {
-            return new ResponseEntity<>(cinemaRoom, HttpStatus.OK);
+        public int getRow() {
+            return row;
+        }
+
+        public void setRow(int row) {
+            this.row = row;
+        }
+
+        public int getColumn() {
+            return column;
+        }
+
+        public void setColumn(int column) {
+            this.column = column;
         }
     }
   learner_created: true
+- name: src/cinema/model/exception/SeatBookedException.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/exception/CustomExceptionMessage.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/exception/ExceptionHandlerController.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/exception/OutOfBoundsException.java
+  visible: true
+  learner_created: true
+- name: src/cinema/service/RoomService.java
+  visible: true
+  learner_created: true
+- name: src/cinema/service/SeatService.java
+  visible: true
+  learner_created: true
+- name: src/cinema/controller/SeatController.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/SeatModelPrice.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/13376#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 01 Jul 2022 16:56:37 UTC
 record: -1
