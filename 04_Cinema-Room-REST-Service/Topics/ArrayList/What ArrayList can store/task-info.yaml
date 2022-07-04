@@ -1,10 +1,10 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: It can only store as much elements as its initial capacity specify
 - text: It can store all types including primitives
-- text: ' It cannot store primitive types'
 - text: It can store duplicate elements
+- text: It can only store as much elements as its initial capacity specify
+- text: ' It cannot store primitive types'
 files:
 - name: src/Task.java
   visible: true

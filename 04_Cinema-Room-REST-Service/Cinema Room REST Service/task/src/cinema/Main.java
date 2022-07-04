@@ -10,7 +10,7 @@ public class Main {
     }
 }
 /*
-STAGE 2 - User 249379983
+STAGE 2 - User 249379983 - Shpekcho2
 Los cinefilos deberian poder verificar la disponibilidad de asientos
 antes de comprar un boleto. En esta etapa, debe agregar un punto final
 para verificar y comprar un boleto disponible. Si el boleto ha sido comprado

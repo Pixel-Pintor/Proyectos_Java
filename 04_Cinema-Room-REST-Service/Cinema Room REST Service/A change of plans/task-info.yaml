@@ -297,6 +297,352 @@ files:
         };
     }
   learner_created: false
+- name: src/cinema/service/SeatService.java
+  visible: true
+  text: |
+    package cinema.service;
+
+    import cinema.model.SeatModel;
+    import cinema.model.SeatModelPrice;
+    import cinema.model.exception.OutOfBoundsException;
+    import cinema.model.exception.SeatBookedException;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+
+    @Component
+    public class SeatService {
+
+        RoomService roomService;
+
+        @Autowired
+        public SeatService(RoomService roomService) {
+            this.roomService = roomService;
+        }
+
+        public SeatModelPrice managePurchaseSeatRequest(SeatModel seatModel) {
+            SeatModelPrice seatModelPrice = new SeatModelPrice(seatModel);
+            if (!roomService.isRowOrColumnOutOfBounds(seatModelPrice)) {
+                throw new OutOfBoundsException();
+            } else if (!roomService.isSeatAvailable(seatModelPrice)) {
+                throw new SeatBookedException();
+            } else {
+                roomService.updateRoomSeats(seatModelPrice);
+                roomService.updateAvailableSeats(seatModelPrice);
+            }
+            return seatModelPrice;
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/exception/SeatBookedException.java
+  visible: true
+  text: |
+    package cinema.model.exception;
+
+    public class SeatBookedException extends RuntimeException {
+
+        public SeatBookedException() {
+            super("The ticket has been already purchased!");
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/SeatModel.java
+  visible: true
+  text: |
+    package cinema.model;
+
+    import java.util.Objects;
+
+    public class SeatModel {
+        private int row;
+        private int column;
+
+        public SeatModel(int row, int column) {
+            this.row = row;
+            this.column = column;
+        }
+
+        public SeatModel() {}
+
+        public int getRow() {
+            return row;
+        }
+
+        public int getColumn() {
+            return column;
+        }
+
+
+        @Override
+        public String toString() {
+            return "{" + this.getRow() + ", " + this.getColumn() + "}";
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            SeatModel seatModel = (SeatModel) o;
+            return row == seatModel.row && column == seatModel.column;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(row, column);
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/exception/OutOfBoundsException.java
+  visible: true
+  text: |
+    package cinema.model.exception;
+
+
+    public class OutOfBoundsException extends RuntimeException {
+
+        public OutOfBoundsException() {
+            super("The number of a row or a column is out of bounds!");
+        }
+    }
+  learner_created: true
+- name: src/cinema/controller/RoomController.java
+  visible: true
+  text: |-
+    package cinema.controller;
+
+    import cinema.model.RoomModel;
+    import cinema.service.RoomService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.RestController;
+
+    @RestController
+    public class RoomController {
+
+        RoomService roomService;
+
+        @Autowired
+        public RoomController(RoomService roomService) {
+            this.roomService = roomService;
+        }
+
+        @GetMapping("/seats")
+        public RoomModel getRoomModel() {
+            return roomService.getRoomModel();
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/exception/CustomExceptionMessage.java
+  visible: true
+  text: |
+    package cinema.model.exception;
+
+    public class CustomExceptionMessage {
+
+        String error;
+
+        public CustomExceptionMessage(String error) {
+            this.error = error;
+        }
+
+        public String getError() {
+            return error;
+        }
+    }
+  learner_created: true
+- name: src/cinema/service/RoomService.java
+  visible: true
+  text: |
+    package cinema.service;
+
+    import cinema.model.RoomModel;
+    import cinema.model.SeatModel;
+    import cinema.model.SeatModelPrice;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+    import org.springframework.stereotype.Service;
+
+    @Component
+    public class RoomService {
+
+        RoomModel roomModel;
+
+        @Autowired
+        public RoomService(RoomModel roomModel) {
+            this.roomModel = roomModel;
+        }
+
+        public RoomModel getRoomModel() {
+            return roomModel;
+        }
+
+        public void updateAvailableSeats(SeatModelPrice seatModelPrice) {
+            this.roomModel.getAvailableSeats().remove(seatModelPrice);
+        }
+
+        public void updateRoomSeats(SeatModelPrice seatModelPrice) {
+            this.roomModel.getRoomSeats().put(seatModelPrice, false);
+        }
+
+        public boolean isRowOrColumnOutOfBounds(SeatModelPrice seatModelPrice) {
+            return this.roomModel.getRoomSeats().containsKey(seatModelPrice);
+        }
+
+        public boolean isSeatAvailable(SeatModelPrice seatModelPrice) {
+            return this.roomModel.getRoomSeats().get(seatModelPrice);
+        }
+    }
+  learner_created: true
+- name: src/cinema/controller/SeatController.java
+  visible: true
+  text: |
+    package cinema.controller;
+
+    import cinema.model.SeatModel;
+    import cinema.service.SeatService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RequestBody;
+    import org.springframework.web.bind.annotation.RestController;
+
+    @RestController
+    public class SeatController {
+
+        SeatService seatService;
+
+        @Autowired
+        public SeatController(SeatService seatService) {
+            this.seatService = seatService;
+        }
+
+        @PostMapping("/purchase")
+        public SeatModel purchaseSeat(@RequestBody SeatModel seatModel) {
+            return seatService.managePurchaseSeatRequest(seatModel);
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/RoomModel.java
+  visible: true
+  text: |
+    package cinema.model;
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+
+    import java.util.ArrayList;
+    import java.util.HashMap;
+    import java.util.List;
+    import java.util.Map;
+
+    @Component
+    public class RoomModel {
+        private final int totalRows;
+        private final int totalColumns;
+        private final List<SeatModelPrice> availableSeats = new ArrayList<>(); // sillas con precio
+        @JsonIgnore
+        private final Map<SeatModelPrice, Boolean> roomSeats = new HashMap<>(); // sillas con precio y disponibilidad
+
+        @Autowired
+        public RoomModel() {
+            this.totalRows = 9;
+            this.totalColumns = 9;
+            this.createAvailableSeats();
+        }
+
+        public void createCinemaRoomSeats() {
+            for (int i = 1; i <= this.totalRows; i++) {
+                for (int j = 1; j <= this.totalColumns; j++) {
+                    this.getAvailableSeats().add(new SeatModelPrice(i, j));
+                }
+            }
+        }
+
+        public void createAvailableSeats() {
+            this.createCinemaRoomSeats();
+            for (SeatModelPrice seat : this.getAvailableSeats()) {
+                this.getRoomSeats().put(seat, true);
+            }
+        }
+
+        @SuppressWarnings("unused")
+        @JsonProperty("total_rows")
+        public int getTotalRows() {
+            return totalRows;
+        }
+
+        @SuppressWarnings("unused")
+        @JsonProperty("total_columns")
+        public int getTotalColumns() {
+            return totalColumns;
+        }
+
+        @JsonProperty("available_seats")
+        public List<SeatModelPrice> getAvailableSeats() {
+            return availableSeats;
+        }
+
+        public Map<SeatModelPrice, Boolean> getRoomSeats() {
+            return roomSeats;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder roomModelAsString = new StringBuilder("[");
+            for (SeatModelPrice seatModel : this.availableSeats) {
+                roomModelAsString.append(seatModel.toString()).append(", ");
+            }
+            roomModelAsString.append("]");
+            return roomModelAsString.toString();
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/exception/ExceptionHandlerController.java
+  visible: true
+  text: |
+    package cinema.model.exception;
+
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.ControllerAdvice;
+    import org.springframework.web.bind.annotation.ExceptionHandler;
+
+    @ControllerAdvice
+    public class ExceptionHandlerController {
+
+        CustomExceptionMessage customExceptionBody;
+
+        @ExceptionHandler(OutOfBoundsException.class)
+        public ResponseEntity<CustomExceptionMessage> handleOutOfBounds(OutOfBoundsException e) {
+            customExceptionBody = new CustomExceptionMessage(e.getMessage());
+            return new ResponseEntity<>(customExceptionBody, HttpStatus.BAD_REQUEST);
+        }
+
+        @ExceptionHandler(SeatBookedException.class)
+        public ResponseEntity<CustomExceptionMessage> handleSeatBooked(SeatBookedException e) {
+            customExceptionBody = new CustomExceptionMessage(e.getMessage());
+            return new ResponseEntity<>(customExceptionBody, HttpStatus.BAD_REQUEST);
+        }
+    }
+  learner_created: true
+- name: src/cinema/model/exception/TokenNotFoundException.java
+  visible: true
+  learner_created: true
+- name: src/cinema/service/TokenService.java
+  visible: true
+  learner_created: true
+- name: src/cinema/controller/TokenController.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/TokenModel.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/ReturnTokenModel.java
+  visible: true
+  learner_created: true
+- name: src/cinema/model/TokenListModel.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/13377#comment
 status: Unchecked
 record: -1

@@ -1,10 +1,10 @@
 type: choice
 is_multiple_choice: true
 options:
+- text: The type of a local variable inside an instance method
 - text: An instance method's return type
 - text: The type of a field
 - text: An instance method's argument type
-- text: The type of a local variable inside an instance method
 files:
 - name: src/Task.java
   visible: true

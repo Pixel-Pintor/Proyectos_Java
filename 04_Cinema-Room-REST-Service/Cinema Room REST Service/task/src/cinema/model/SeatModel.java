@@ -1,14 +1,22 @@
 package cinema.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class SeatModel {
+
     private int row;
     private int column;
+    private int price;
+    private boolean available;
 
-    public SeatModel(int row, int column) {
+    public SeatModel(int row, int column, boolean available) {
         this.row = row;
         this.column = column;
+        this.price = this.calculateSeatPrice();
+        this.available = available;
     }
 
     public SeatModel() {}
@@ -21,10 +29,24 @@ public class SeatModel {
         return column;
     }
 
+    public int getPrice() { return price; }
+
+    public void seatAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int calculateSeatPrice() {
+        return this.row <= 4 ? 10 : 8;
+    }
+
 
     @Override
     public String toString() {
-        return "{" + this.getRow() + ", " + this.getColumn() + "}";
+        return "{" +
+                "row=" + row +
+                ", column=" + column +
+                ", price=" + price +
+                '}';
     }
 
     @Override

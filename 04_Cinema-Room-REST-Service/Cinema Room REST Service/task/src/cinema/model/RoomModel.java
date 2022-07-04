@@ -14,9 +14,11 @@ import java.util.Map;
 public class RoomModel {
     private final int totalRows;
     private final int totalColumns;
-    private final List<SeatModelPrice> availableSeats = new ArrayList<>(); // sillas con precio
+    private final List<SeatModel> availableSeats = new ArrayList<>(); // sillas con precio
     @JsonIgnore
-    private final Map<SeatModelPrice, Boolean> roomSeats = new HashMap<>(); // sillas con precio y disponibilidad
+    private final Map<SeatModel, Boolean> roomSeats = new HashMap<>(); // sillas con precio y disponibilidad
+    @JsonIgnore
+    private final List<TokenModel> tokensList = new ArrayList<>();
 
     @Autowired
     public RoomModel() {
@@ -28,16 +30,20 @@ public class RoomModel {
     public void createCinemaRoomSeats() {
         for (int i = 1; i <= this.totalRows; i++) {
             for (int j = 1; j <= this.totalColumns; j++) {
-                this.getAvailableSeats().add(new SeatModelPrice(i, j));
+                this.getAvailableSeats().add(new SeatModel(i, j, true));
             }
         }
     }
 
     public void createAvailableSeats() {
         this.createCinemaRoomSeats();
-        for (SeatModelPrice seat : this.getAvailableSeats()) {
+        for (SeatModel seat : this.getAvailableSeats()) {
             this.getRoomSeats().put(seat, true);
         }
+    }
+
+    public List<TokenModel> getTokensList() {
+        return tokensList;
     }
 
     @SuppressWarnings("unused")
@@ -53,18 +59,18 @@ public class RoomModel {
     }
 
     @JsonProperty("available_seats")
-    public List<SeatModelPrice> getAvailableSeats() {
+    public List<SeatModel> getAvailableSeats() {
         return availableSeats;
     }
 
-    public Map<SeatModelPrice, Boolean> getRoomSeats() {
+    public Map<SeatModel, Boolean> getRoomSeats() {
         return roomSeats;
     }
 
     @Override
     public String toString() {
         StringBuilder roomModelAsString = new StringBuilder("[");
-        for (SeatModelPrice seatModel : this.availableSeats) {
+        for (SeatModel seatModel : this.availableSeats) {
             roomModelAsString.append(seatModel.toString()).append(", ");
         }
         roomModelAsString.append("]");

@@ -21,4 +21,10 @@ public class ExceptionHandlerController {
         customExceptionBody = new CustomExceptionMessage(e.getMessage());
         return new ResponseEntity<>(customExceptionBody, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(TokenNotFoundException.class)
+    public ResponseEntity<CustomExceptionMessage> handleTokenNotFound(TokenNotFoundException e) {
+        customExceptionBody = new CustomExceptionMessage(e.getMessage());
+        return new ResponseEntity<>(customExceptionBody, HttpStatus.BAD_REQUEST);
+    }
 }
