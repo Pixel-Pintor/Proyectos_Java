@@ -2,3 +2,8 @@ content:
 - Anonymous classes
 - Default methods
 - Method references
+- Functional interfaces
+- Standard functional interfaces
+- Optional
+- Function composition
+- Comparator
