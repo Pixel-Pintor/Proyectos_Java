@@ -7,3 +7,15 @@ content:
 - Optional
 - Function composition
 - Comparator
+- Functional data processing with streams
+- Stream filtering
+- Map and flatMap
+- Reduction methods
+- Collectors
+- Infinite streams
+- Taking elements
+- Streams of primitives
+- Stream pipelines
+- Parallel streams
+- The Map interface
+- Grouping collectors

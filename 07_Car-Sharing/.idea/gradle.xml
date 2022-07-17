@@ -5,11 +5,13 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Car Sharing/task" />
             <option value="$PROJECT_DIR$/Topics/Anonymous classes/And always these rules" />
             <option value="$PROJECT_DIR$/Topics/Anonymous classes/Capture variables" />
             <option value="$PROJECT_DIR$/Topics/Anonymous classes/Find a correct syntax" />
@@ -17,8 +19,15 @@
             <option value="$PROJECT_DIR$/Topics/Anonymous classes/String reverser" />
             <option value="$PROJECT_DIR$/Topics/Anonymous classes/Theory" />
             <option value="$PROJECT_DIR$/Topics/Anonymous classes/What about context" />
+            <option value="$PROJECT_DIR$/Topics/Collectors/The product of squares" />
+            <option value="$PROJECT_DIR$/Topics/Collectors/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Collectors/Сollect parameter" />
             <option value="$PROJECT_DIR$/Topics/Comparator/Comparing numbers" />
+            <option value="$PROJECT_DIR$/Topics/Comparator/Comparing values" />
+            <option value="$PROJECT_DIR$/Topics/Comparator/Method name" />
+            <option value="$PROJECT_DIR$/Topics/Comparator/Odd and even" />
             <option value="$PROJECT_DIR$/Topics/Comparator/Reverse sorting" />
+            <option value="$PROJECT_DIR$/Topics/Comparator/Sort users" />
             <option value="$PROJECT_DIR$/Topics/Comparator/Theory" />
             <option value="$PROJECT_DIR$/Topics/Default methods/Add new default method" />
             <option value="$PROJECT_DIR$/Topics/Default methods/Implement a default method" />
@@ -31,11 +40,36 @@
             <option value="$PROJECT_DIR$/Topics/Function composition/Theory" />
             <option value="$PROJECT_DIR$/Topics/Function composition/Three math functions" />
             <option value="$PROJECT_DIR$/Topics/Function composition/What function is executed first" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/A sorted stream" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Count passwords" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Create a stream from a list" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Finding max and min elements" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Intermediate operations" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Long ranges" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Print elements of a stream" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Statements about stream operations" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Statements about streams" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Terminal operations with streams" />
+            <option value="$PROJECT_DIR$/Topics/Functional data processing with streams/Theory" />
             <option value="$PROJECT_DIR$/Topics/Functional interfaces/A lambda expression with seven arguments" />
             <option value="$PROJECT_DIR$/Topics/Functional interfaces/Built-in classes" />
             <option value="$PROJECT_DIR$/Topics/Functional interfaces/Statements" />
             <option value="$PROJECT_DIR$/Topics/Functional interfaces/Ternary predicate" />
             <option value="$PROJECT_DIR$/Topics/Functional interfaces/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Grouping collectors/Downstream collectors" />
+            <option value="$PROJECT_DIR$/Topics/Grouping collectors/Palindrome or not" />
+            <option value="$PROJECT_DIR$/Topics/Grouping collectors/Splitting data with a collector" />
+            <option value="$PROJECT_DIR$/Topics/Grouping collectors/The total sum of transaction by each account" />
+            <option value="$PROJECT_DIR$/Topics/Grouping collectors/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Infinite streams/Generating cats" />
+            <option value="$PROJECT_DIR$/Topics/Infinite streams/Methods for creating infinite streams" />
+            <option value="$PROJECT_DIR$/Topics/Infinite streams/Select output" />
+            <option value="$PROJECT_DIR$/Topics/Infinite streams/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Infinite streams/What does the code print" />
+            <option value="$PROJECT_DIR$/Topics/Map and flatMap/Count words without repetitions" />
+            <option value="$PROJECT_DIR$/Topics/Map and flatMap/Maximum of the absolute values" />
+            <option value="$PROJECT_DIR$/Topics/Map and flatMap/Sorting the absolute values" />
+            <option value="$PROJECT_DIR$/Topics/Map and flatMap/Theory" />
             <option value="$PROJECT_DIR$/Topics/Method references/All correct method references" />
             <option value="$PROJECT_DIR$/Topics/Method references/Ascending and descending sorting" />
             <option value="$PROJECT_DIR$/Topics/Method references/Getting fields of classes" />
@@ -46,6 +80,16 @@
             <option value="$PROJECT_DIR$/Topics/Optional/Sum up optional values" />
             <option value="$PROJECT_DIR$/Topics/Optional/The address book" />
             <option value="$PROJECT_DIR$/Topics/Optional/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/Fix the sorting order" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/Getting the greater speedup" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/Inverting streams" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/Parallel reducing" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/Prime numbers" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/The ordered sequence" />
+            <option value="$PROJECT_DIR$/Topics/Parallel streams/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Reduction methods/Calculating factorials" />
+            <option value="$PROJECT_DIR$/Topics/Reduction methods/Range quadratic sum" />
+            <option value="$PROJECT_DIR$/Topics/Reduction methods/Theory" />
             <option value="$PROJECT_DIR$/Topics/Standard functional interfaces/Accounts" />
             <option value="$PROJECT_DIR$/Topics/Standard functional interfaces/An infinite numbers supplier" />
             <option value="$PROJECT_DIR$/Topics/Standard functional interfaces/Describe the function" />
@@ -54,6 +98,40 @@
             <option value="$PROJECT_DIR$/Topics/Standard functional interfaces/Select suitable interfaces" />
             <option value="$PROJECT_DIR$/Topics/Standard functional interfaces/Ternary operator" />
             <option value="$PROJECT_DIR$/Topics/Standard functional interfaces/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Stream filtering/Bad words detecting" />
+            <option value="$PROJECT_DIR$/Topics/Stream filtering/Check if a number is prime" />
+            <option value="$PROJECT_DIR$/Topics/Stream filtering/Numbers filtering" />
+            <option value="$PROJECT_DIR$/Topics/Stream filtering/Omitting long strings" />
+            <option value="$PROJECT_DIR$/Topics/Stream filtering/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/Counting words" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/Possible pipelines" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/The sum of odd numbers" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/The ten most frequent words" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/The total number of employees" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/The total sum of canceled transactions" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Stream pipelines/Using streams many times" />
+            <option value="$PROJECT_DIR$/Topics/Streams of primitives/Existing streams" />
+            <option value="$PROJECT_DIR$/Topics/Streams of primitives/Hello world stream" />
+            <option value="$PROJECT_DIR$/Topics/Streams of primitives/Producing streams" />
+            <option value="$PROJECT_DIR$/Topics/Streams of primitives/Range of numbers" />
+            <option value="$PROJECT_DIR$/Topics/Streams of primitives/The average salary" />
+            <option value="$PROJECT_DIR$/Topics/Streams of primitives/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Taking elements/Secret codes" />
+            <option value="$PROJECT_DIR$/Topics/Taking elements/Sorting and skipping numbers" />
+            <option value="$PROJECT_DIR$/Topics/Taking elements/Theory" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Counting words" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Creating a map" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Determine values of variables" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Displaying pairs" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Existing implementations" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Getting submaps" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Kidnapper of Ice cream" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Modifying a map" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Sherlock Holmes and removing of characters" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Sherlock Holmes and the mystery of anagrams" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Theory" />
+            <option value="$PROJECT_DIR$/Topics/The Map interface/Tricky sub-maps" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
