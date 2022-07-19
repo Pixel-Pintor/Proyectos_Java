@@ -1,12 +1,12 @@
 type: choice
 is_multiple_choice: false
 options:
-- text: public static int sumAll(int[] nums)
+- text: public static int sumAll(int.. nums)
 - text: public static int sumAll(int nums[])
 - text: public static int sumAll(int num1, int num2, int num3)
 - text: public static int sumAll(int... nums)
-- text: public static int sumAll(int.. nums)
 - text: public static int sumAll(int nums...)
+- text: public static int sumAll(int[] nums)
 files:
 - name: src/Task.java
   visible: true

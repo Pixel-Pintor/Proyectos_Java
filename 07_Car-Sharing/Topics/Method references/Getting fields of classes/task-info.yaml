@@ -1,12 +1,12 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: instance::staticMethod
-- text: Clazz::instanceMethod
 - text: instance::instanceMethod
-- text: Clazz::staticMethod
-- text: Clazz::new
 - text: Clazz::method
+- text: instance::staticMethod
+- text: Clazz::new
+- text: Clazz::staticMethod
+- text: Clazz::instanceMethod
 files:
 - name: src/Task.java
   visible: true

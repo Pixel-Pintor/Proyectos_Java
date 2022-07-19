@@ -1,10 +1,10 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: public static void method(long.. vararg) { /* do something */ }
 - text: public static void method(double... vararg, int a) { /* do something */ }
 - text: public static void method(long vararg...) { /* do something */ }
 - text: public static void method(int[] a, long... vararg) { /* do something */ }
+- text: public static void method(long.. vararg) { /* do something */ }
 - text: public static void method(long... vararg) { /* do something */ }
 files:
 - name: src/Task.java
