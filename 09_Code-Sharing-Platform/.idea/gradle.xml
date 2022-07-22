@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="jbr-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Code Sharing Platform/task" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/About abstract classes" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/An incorrect statement" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Correct statements" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Features of an abstract method" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Incorrect declaration" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Overriding when extending" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Parts of an abstract class" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Shape hierarchy" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Users and WebSites" />
+            <option value="$PROJECT_DIR$/Topics/Abstract class/Which methods must be overridden" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/10 days before" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/LocalDate class" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/Methods of LocalDate" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/Print dates of a year with an offset" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/Representing a date" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/The n-th day from the end of a month" />
+            <option value="$PROJECT_DIR$/Topics/LocalDate/Theory" />
+            <option value="$PROJECT_DIR$/Topics/LocalTime/LocalTime constants" />
+            <option value="$PROJECT_DIR$/Topics/LocalTime/Seconds between two time points" />
+            <option value="$PROJECT_DIR$/Topics/LocalTime/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Advantages of switch expressions" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Days of the week" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Invalid syntax" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Making it compile" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Meteorological seasons" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Months of the year" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Switch expression keywords" />
+            <option value="$PROJECT_DIR$/Topics/Switch expression/Theory" />
+            <option value="$PROJECT_DIR$/Topics/toString()/Theory" />
+            <option value="$PROJECT_DIR$/Topics/toString()/Users as strings" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

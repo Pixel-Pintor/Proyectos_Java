@@ -1,11 +1,11 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: object.instanceMethodName
-- text: ClassName::staticMethodName
 - text: object::instanceMethod()
-- text: ClassName::staticMethodName()
+- text: object.instanceMethodName
 - text: ClassName.staticMethodName
+- text: ClassName::staticMethodName()
+- text: ClassName::staticMethodName
 - text: object::instanceMethodName
 files:
 - name: src/Task.java

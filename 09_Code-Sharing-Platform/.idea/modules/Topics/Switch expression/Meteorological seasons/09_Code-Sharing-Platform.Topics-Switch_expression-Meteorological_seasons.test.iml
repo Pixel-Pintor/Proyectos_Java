@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Switch_expression-Meteorological_seasons:test" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Switch expression/Meteorological seasons" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="09_Code-Sharing-Platform" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output-test url="file://$MODULE_DIR$/../../../../../Topics/Switch expression/Meteorological seasons/out/test/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Switch expression/Meteorological seasons/src/test" />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Switch expression/Meteorological seasons/test" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="09_Code-Sharing-Platform.Topics-Switch_expression-Meteorological_seasons.main" />
+    <orderEntry type="module" module-name="09_Code-Sharing-Platform.util.main" />
+    <orderEntry type="module" module-name="09_Code-Sharing-Platform.util.test" production-on-test="" />
+    <orderEntry type="library" name="Gradle: org.jsoup:jsoup:1.13.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.hyperskill:hs-test:release-SNAPSHOT" level="project" />
+  </component>
+  <component name="TestModuleProperties" production-module="09_Code-Sharing-Platform.Topics-Switch_expression-Meteorological_seasons.main" />
+</module>

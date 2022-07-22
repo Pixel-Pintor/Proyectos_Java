@@ -1,10 +1,10 @@
 type: choice
 is_multiple_choice: false
 options:
+- text: to avoid code duplication
+- text: to provide backward compatibility
 - text: to invoke code directly from an interface, without creating a class
 - text: to speed up code execution
-- text: to provide backward compatibility
-- text: to avoid code duplication
 files:
 - name: src/Task.java
   visible: true

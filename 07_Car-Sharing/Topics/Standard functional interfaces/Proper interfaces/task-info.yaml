@@ -1,12 +1,12 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: Function&lt;String, String&gt;
+- text: UnaryOperator&lt;String&gt;
 - text: BiPredicate&lt;String, Boolean&gt;
 - text: Function&lt;Boolean, String&gt;
 - text: Function&lt;String, Boolean&gt;
 - text: Predicate&lt;String&gt;
-- text: UnaryOperator&lt;String&gt;
+- text: Function&lt;String, String&gt;
 files:
 - name: src/Task.java
   visible: true

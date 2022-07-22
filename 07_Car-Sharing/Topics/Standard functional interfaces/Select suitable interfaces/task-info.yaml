@@ -1,14 +1,14 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: Consumers
-- text: Providers
-- text: Functions
 - text: Collectors
-- text: Predicates
 - text: Generators
-- text: Operators
 - text: Suppliers
+- text: Operators
+- text: Providers
+- text: Consumers
+- text: Functions
+- text: Predicates
 files:
 - name: src/Task.java
   visible: true

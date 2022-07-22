@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":Topics-Functional_data_processing_with_streams-Intermediate_operations:test" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Functional data processing with streams/Intermediate operations" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="07_Car-Sharing" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager">
-    <output-test url="file://$MODULE_DIR$/../../../../../Topics/Functional data processing with streams/Intermediate operations/out/test/classes" />
-    <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../../../Topics/Functional data processing with streams/Intermediate operations/src/test" />
-    <content url="file://$MODULE_DIR$/../../../../../Topics/Functional data processing with streams/Intermediate operations/test" />
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="07_Car-Sharing.Topics-Functional_data_processing_with_streams-Intermediate_operations.main" />
-    <orderEntry type="module" module-name="07_Car-Sharing.util.main" />
-    <orderEntry type="module" module-name="07_Car-Sharing.util.test" production-on-test="" />
-    <orderEntry type="library" name="Gradle: com.h2database:h2:1.4.200" level="project" />
-    <orderEntry type="library" name="Gradle: com.github.hyperskill:hs-test:release-SNAPSHOT" level="project" />
-  </component>
+<module version="4">
   <component name="TestModuleProperties" production-module="07_Car-Sharing.Topics-Functional_data_processing_with_streams-Intermediate_operations.main" />
 </module>

@@ -1,10 +1,5 @@
 type: choice
 is_multiple_choice: false
-options:
-- text: '"Hello World!" Notification interface is implemented first'
-- text: Runtime error. The interpreter cannot decide what implementation to use
-- text: Compilation error. The compiler detects ambiguity
-- text: '"Attention". Alarm interface is implemented last'
 files:
 - name: src/Task.java
   visible: true

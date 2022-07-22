@@ -224,14 +224,14 @@ topics:
     theory_id: 7400
   - title: Arithmetic expressions
     theory_id: 7409
-  - title: The NULL value
-    theory_id: 7907
   - title: Basic SELECT statement
     theory_id: 7392
   - title: SELECT FROM statement
     theory_id: 8611
   - title: Results ordering
     theory_id: 8627
+  - title: The NULL value
+    theory_id: 7907
   - title: Basic INSERT statement
     theory_id: 9059
   - title: Intro to MySQL
