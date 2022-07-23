@@ -677,6 +677,605 @@ files:
         }
     }
   learner_created: false
+- name: src/banking/Card.java
+  visible: true
+  text: |-
+    package banking;
+
+    import java.util.ArrayList;
+    import java.util.Random;
+
+    class Card {
+        final int LOWER = 0;
+        final int UPPER = 9;
+        final int FOUR = 4;
+        final int RANGE = UPPER - LOWER + 1;
+        final Random randomGenerator = new Random();
+        String cardNumber = newCardNumber();
+        int pinNumber = newPinNumber();
+
+        public String newCardNumber() {
+            String startNumber = "400000";
+            String midNumber;
+            long luhnNumber;
+            do {
+                midNumber = generateAccountNumber();
+                luhnNumber = Long.parseLong(startNumber + midNumber);
+            } while (!checkDivisibleByTen(luhnNumber));
+            int lastNumber = generateFinalNumber(luhnNumber);
+            return String.valueOf(luhnNumber) + lastNumber;
+        }
+
+        // TODO : verificar la generacion del PIN
+        public int newPinNumber() {
+            StringBuilder pin = new StringBuilder();
+            for (int i = LOWER; i < FOUR; i++) {
+                pin.append(randomGenerator.nextInt(RANGE));
+            }
+            return Integer.parseInt(pin.toString());
+        }
+
+        private String generateAccountNumber() {
+            StringBuilder number = new StringBuilder();
+            for (int i = LOWER; i < UPPER; i++) {
+                number.append(randomGenerator.nextInt(RANGE));
+            }
+            return number.toString();
+        }
+
+        private boolean checkDivisibleByTen(long number) {
+            return number % 10 == 0;
+        }
+
+        private int generateFinalNumber(long number) {
+            String digits = Long.toString(number);
+            ArrayList<Integer> allNumbers = new ArrayList<>();
+            for (int i = 0; i < digits.length(); i++) {
+                allNumbers.add(Integer.parseInt(String.valueOf(digits.charAt(i))));
+            }
+            ArrayList<Integer> evenArray = new ArrayList<>();
+            for (int i = 0; i < allNumbers.size(); i++) {
+                if (i % 2 == 0) {
+                    evenArray.add(allNumbers.get(i));
+                }
+            }
+            evenArray.replaceAll(integer -> integer * 2);
+            for (int i = 0; i < evenArray.size(); i++) {
+                if (evenArray.get(i) > 9) {
+                    evenArray.set(i, evenArray.get(i) - 9);
+                }
+            }
+            int indexOdd = 0;
+            for (int i = 0; i < allNumbers.size(); i++) {
+                if (i % 2 == 0) {
+                    allNumbers.set(i, evenArray.get(indexOdd));
+                    indexOdd++;
+                }
+            }
+            int sum = 0;
+            for (int num : allNumbers) {
+                sum += num;
+            }
+            int lastNumber = 10 - (sum % 10);
+            if (lastNumber > 9) {
+                return 0;
+            } else {
+                return lastNumber;
+            }
+        }
+
+        public String getCardNumber() {
+            return cardNumber;
+        }
+
+        public int getPinNumber() {
+            return pinNumber;
+        }
+    }
+  learner_created: true
+- name: src/banking/Bank.java
+  visible: true
+  text: |-
+    package banking;
+
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Objects;
+    import java.util.Scanner;
+
+    class Bank {
+
+        final Scanner scanner = new Scanner(System.in);
+        final int ONE = 1;
+        final int ZERO = 0;
+        final int TWO = 2;
+        List<Account> accounts = new ArrayList<>();
+
+        public void startBank() {
+            int action;
+            do {
+                action = bankMenu();
+                if (action == ONE) {
+                    Card newCard = new Card();
+                    String cardNumber = newCard.getCardNumber();
+                    int pinNumber = newCard.getPinNumber();
+                    printCardInfo(cardNumber, pinNumber);
+                    createNewBankAccount(cardNumber, pinNumber, ZERO);
+                } else if (action == TWO) {
+                    loggingAccount();
+                }
+            } while (action != ZERO);
+            System.out.println("\nBye!");
+        }
+
+        public int bankMenu() {
+            System.out.println("1. Create an account");
+            System.out.println("2. Log into account");
+            System.out.println("0. Exit");
+            return scanner.nextInt();
+        }
+
+        public void printCardInfo(String cardNumber, long pinNumber) {
+            System.out.println("\nYour card has been created");
+            System.out.println("Your card number:");
+            System.out.println(cardNumber);
+            System.out.println("Your card PIN:");
+            System.out.println(pinNumber);
+            System.out.println();
+        }
+
+        public void loggingAccount() {
+            String number = inputCardNumberLogging();
+            int pin = inputPinNumberLogging();
+            boolean logging = false;
+            for (Account account : accounts) {
+                if (Objects.equals(number, account.getCardNumber())) {
+                    if (pin == account.getPinNumber()) {
+                        loggedAccount(account);
+                        logging = true;
+                        break;
+                    }
+                }
+            }
+            if (!logging) {
+                System.out.println("\nWrong card number or PIN!\n");
+            }
+        }
+
+        private int getLoggedAction() {
+            System.out.println("\n1. Balance");
+            System.out.println("2. Log out");
+            System.out.println("0. Exit");
+            return scanner.nextInt();
+        }
+
+        private void loggedAccount(Account userAccount) {
+            System.out.println("\nYou have successfully logged in!");
+            int action;
+            do {
+                action = getLoggedAction();
+                if (action == ONE) {
+                    System.out.println("\nBalance: " + userAccount.getBalance());
+                }
+            } while (action == ONE);
+            System.out.println("\nYou have successfully logged out!\n");
+        }
+
+        private String inputCardNumberLogging() {
+            System.out.println("\nEnter your card number:");
+            return scanner.next();
+        }
+
+        private int inputPinNumberLogging() {
+            System.out.println("Enter your PIN:");
+            return scanner.nextInt();
+        }
+
+        private void createNewBankAccount(String cardNumber, long pingNumber, long balance) {
+            Account newAccount = new Account(cardNumber, pingNumber, balance);
+            accounts.add(newAccount);
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/DBUtils.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    import java.sql.Connection;
+    import java.sql.DriverManager;
+    import java.sql.SQLException;
+
+    public class DBUtils {
+
+        private static final String URL = "jdbc:sqlite:";
+        public static String filename = "test.db";
+
+        public static Connection getConnection() {
+            Connection connection = null;
+
+            try {
+                connection = DriverManager.getConnection(URL + filename);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return connection;
+        }
+
+        public static void closeConnection(Connection connection) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/CardService.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    import java.util.Random;
+
+    public class CardService {
+
+        private static final int BIN = 400000;
+        private static final int MAX_ACC_ID = 999999999;
+        private static final int MAX_PIN = 9999;
+        private static final int RADIX = 10;
+
+        private final CardRepository cardRepository;
+
+        public CardService() {
+            cardRepository = new CardRepository();
+        }
+
+        public Card findByNumber(String number) {
+            return cardRepository.findByNumber(number);
+        }
+
+        public Card createAcc() {
+            Card card = new Card();
+            Random random = new Random();
+            String accId = String.format("%09d", random.nextInt(MAX_ACC_ID));
+            String checksum = String.valueOf(generateCheckSum(BIN + accId));
+            String pin = String.format("%04d", random.nextInt(MAX_PIN));
+
+            card.setNumber(BIN + accId + checksum);
+            card.setPin(pin);
+            card.setBalance(0);
+
+            cardRepository.save(card);
+
+            return card;
+        }
+
+        private int generateCheckSum(String num) {
+            char[] binAccId = num.toCharArray();
+            int sum = 0;
+            for (int i = 0; i < binAccId.length; i++) {
+                int no = Character.getNumericValue(binAccId[i]);
+                if (i % 2 == 0) {
+                    binAccId[i] = Character.forDigit(no * 2 > 9 ? no * 2 - 9 : no * 2, RADIX);
+                    sum += Character.getNumericValue(binAccId[i]);
+                    continue;
+                }
+                sum += no;
+            }
+
+            return 10 - (sum % 10) == 10 ? 0 : 10 - (sum % 10);
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/CardValidation.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    import java.util.Objects;
+
+    public class CardValidation {
+
+        private final CardRepository cardRepository;
+
+        public CardValidation() {
+            cardRepository = new CardRepository();
+        }
+
+        public boolean isValid(String number, String pin) {
+            Card card = cardRepository.findByNumber(number);
+
+            if (card == null) {
+                return false;
+            }
+
+            return Objects.equals(card.getPin(), pin);
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/CardRepository.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    import java.sql.*;
+
+    public class CardRepository {
+
+        public CardRepository() {
+            createTable();
+        }
+
+        public void createTable() {
+            Connection connection = DBUtils.getConnection();
+
+            try {
+                Statement statement = connection.createStatement();
+                String query = "CREATE TABLE IF NOT EXISTS card (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "number VARCHAR(16), " +
+                        "pin VARCHAR(4), " +
+                        "balance INTEGER DEFAULT 0" +
+                        ")";
+                statement.executeUpdate(query);
+                DBUtils.closeConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public Card findByNumber(String number) {
+            Connection connection = DBUtils.getConnection();
+            Card card = new Card();
+
+            try {
+                String query = "SELECT * FROM card " +
+                        "WHERE number = ?";
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, number);
+                ResultSet resultSet = ps.executeQuery();
+
+                if (!resultSet.next()) {
+                    return null;
+                }
+
+                card.setId(resultSet.getInt("id"));
+                card.setNumber(resultSet.getString("number"));
+                card.setPin(resultSet.getString("pin"));
+                card.setBalance(resultSet.getInt("balance"));
+
+                DBUtils.closeConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return card;
+        }
+
+        public void save(Card card) {
+            Connection connection = DBUtils.getConnection();
+
+            try {
+                connection.setAutoCommit(false);
+                String query = "INSERT INTO card(number, pin, balance) VALUES (?, ?, ?)";
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, card.getNumber());
+                ps.setString(2, card.getPin());
+                ps.setInt(3, card.getBalance());
+                ps.executeUpdate();
+                connection.commit();
+                DBUtils.closeConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/banking/Account.java
+  visible: true
+  text: |-
+    package banking;
+
+    class Account {
+
+        String cardNumber;
+        long pinNumber;
+        long balance;
+
+        public Account(String cardNumber, long pinNumber, long balance) {
+            this.cardNumber = cardNumber;
+            this.pinNumber = pinNumber;
+            this.balance = balance;
+        }
+
+        public String getCardNumber() {
+            return cardNumber;
+        }
+
+        public long getPinNumber() {
+            return pinNumber;
+        }
+
+        public long getBalance() {
+            return balance;
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/Card.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    public class Card {
+
+        private int id;
+        private String number;
+        private String pin;
+        private int balance;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+
+        public String getPin() {
+            return pin;
+        }
+
+        public void setPin(String pin) {
+            this.pin = pin;
+        }
+
+        public int getBalance() {
+            return balance;
+        }
+
+        public void setBalance(int balance) {
+            this.balance = balance;
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/InputUtil.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    import java.util.Scanner;
+
+    public class InputUtil {
+
+        private static final Scanner scanner = new Scanner(System.in);
+
+        public static int getIntegerInput() {
+            return scanner.nextInt();
+        }
+
+        public static String getStringInput() {
+            return scanner.next();
+        }
+    }
+  learner_created: true
+- name: src/banking/anonymous/CardController.java
+  visible: true
+  text: |
+    package banking.anonymous;
+
+    public class CardController {
+
+        private static final int CREATE_ACCOUNT = 1;
+        private static final int LOG_IN = 2;
+        private static final int BALANCE = 1;
+        private static final int LOG_OUT = 2;
+        private static final int EXIT = 0;
+
+        private final CardService cardService;
+        private final CardValidation cardValidation;
+
+        public CardController() {
+            cardService = new CardService();
+            cardValidation = new CardValidation();
+        }
+
+        public void start() {
+            showStartMenu();
+        }
+
+        private void showStartMenu() {
+            int option;
+
+            while (true) {
+                System.out.println("1. Create an account\n" +
+                        "2. Log into account\n" +
+                        "0. Exit");
+
+                option = InputUtil.getIntegerInput();
+
+                switch (option) {
+                    case CREATE_ACCOUNT:
+                        processCreateAcc();
+                        break;
+                    case LOG_IN:
+                        processLogin();
+                        break;
+                    case EXIT:
+                        System.out.println("\nBye!");
+                        return;
+                }
+            }
+        }
+
+        private void processCreateAcc() {
+            Card card = cardService.createAcc();
+            showCardInfo(card);
+        }
+
+        private void processLogin() {
+            System.out.println("\nEnter your card number:");
+            String number = InputUtil.getStringInput();
+            System.out.println("Enter your PIN:");
+            String pin = InputUtil.getStringInput();
+
+            if (cardValidation.isValid(number, pin)) {
+                showLoginMenu(cardService.findByNumber(number));
+            } else {
+                System.out.println("\nWrong card number or PIN!\n");
+            }
+        }
+
+        private void showCardInfo(Card card) {
+            System.out.println("\nYour card has been created\n" +
+                    "Your card number:\n" +
+                    card.getNumber() + "\n" +
+                    "Your card PIN:\n" +
+                    card.getPin() + "\n");
+        }
+
+        private void showLoginMenu(Card card) {
+            int option;
+
+            System.out.println("\nYou have successfully logged in!\n");
+
+            while (true) {
+                System.out.println("1. Balance\n" +
+                        "2. Log out\n" +
+                        "0. Exit");
+
+                option = InputUtil.getIntegerInput();
+
+                switch (option) {
+                    case BALANCE:
+                        System.out.println("\nBalance: " + card.getBalance() + "\n");
+                        break;
+                    case LOG_OUT:
+                        System.out.println("\nYou have successfully logged out!\n");
+                        return;
+                    case EXIT:
+                        System.out.println("\nBye!");
+                        System.exit(0);
+                }
+            }
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8428#comment
 status: Unchecked
 record: -1

@@ -499,9 +499,12 @@ files:
 - name: src/banking/anonymous/CardValidation.java
   visible: true
   learner_created: true
+- name: test.db
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8426#comment
-status: Failed
+status: Solved
 feedback:
-  message: Failed to launch checking
-  time: Tue, 19 Jul 2022 23:19:52 UTC
+  message: Congratulations!
+  time: Sat, 23 Jul 2022 23:38:45 UTC
 record: 2
