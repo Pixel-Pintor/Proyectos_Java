@@ -10,10 +10,10 @@ stages:
   is_completed: true
 - id: 759
   step: 11502
-  is_completed: false
+  is_completed: true
 - id: 760
   step: 11503
-  is_completed: false
+  is_completed: true
 - id: 761
   step: 11504
   is_completed: false
@@ -219,6 +219,42 @@ topics:
     theory_id: 3535
   - title: Instance methods
     theory_id: 3495
+  - title: Access modifiers
+    theory_id: 3589
+  - title: Getters and setters
+    theory_id: 3599
+  - title: Inheritance
+    theory_id: 3583
+  - title: Protected modifier
+    theory_id: 6692
+  - title: Referencing subclass objects
+    theory_id: 3585
+  - title: The Object class
+    theory_id: 3596
+  - title: Multiple constructors
+    theory_id: 3538
+  - title: The keyword super
+    theory_id: 3588
+  - title: Objects
+    theory_id: 4727
+  - title: Static members
+    theory_id: 3534
+  - title: Annotations basics
+    theory_id: 3622
+  - title: Hiding and overriding
+    theory_id: 3572
+  - title: Polymorphism
+    theory_id: 3587
+  - title: Interface
+    theory_id: 3615
+  - title: Anonymous classes
+    theory_id: 11896
+  - title: Default methods
+    theory_id: 11354
+  - title: Boxing and unboxing
+    theory_id: 3595
+  - title: Comparable
+    theory_id: 14456
   1:
   - title: Literals
     theory_id: 7400

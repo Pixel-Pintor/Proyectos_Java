@@ -29,7 +29,7 @@ subprojects {
 
     dependencies {
         implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
-        testImplementation 'com.github.hyperskill:hs-test:release-SNAPSHOT'
+        testImplementation 'com.github.hyperskill:hs-test:master-SNAPSHOT'
     }
 
     configurations.all {
@@ -54,7 +54,7 @@ subprojects {
 
 project(':util') {
     dependencies {
-        implementation 'com.github.hyperskill:hs-test:release-SNAPSHOT'
+        implementation 'com.github.hyperskill:hs-test:master-SNAPSHOT'
     }
 }
 

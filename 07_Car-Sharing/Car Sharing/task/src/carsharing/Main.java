@@ -1,41 +1,152 @@
 package carsharing;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
 
+    private static UserMenu firstMenu;
+    private static UserMenu managerMenu;
+    private static CompanyDAOImpl companyDAO;
+
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.mainMenu();
+        setupMenus();
+
+        String databaseFileName = getDatabaseFileName(args);
+        companyDAO = new CompanyDAOImpl(databaseFileName);
+
+        firstMenu.openMenu();
+    }
+
+    private static void setupMenus() {
+        firstMenu = setupFirstMenu();
+        managerMenu = setupManagerMenu();
+    }
+
+    private static UserMenu setupFirstMenu() {
+        MenuItem logInAsManager = new MenuItem(1, "1. Log in as a manager", () -> {
+            managerMenu.openMenu();
+        });
+
+        MenuItem exit = new MenuItem(0, "0. Exit", () -> {
+            Runtime.getRuntime().exit(0);
+        });
+
+        return new UserMenu(List.of(logInAsManager, exit));
+    }
+
+    private static UserMenu setupManagerMenu() {
+        MenuItem backToFirstMenu = new MenuItem(0, "0. Back", () -> firstMenu.openMenu());
+
+        MenuItem chooseCompany = new MenuItem(1, "1. Company list", () -> {
+            List<Company> companies = companyDAO.getCompanyList();
+            if (companies.isEmpty()) {
+                System.out.println("The company list is empty!");
+                return;
+            }
+
+            System.out.println("Choose a company:");
+            printCompanyList(companies);
+            System.out.println("0. Back");
+
+            Scanner scanner = new Scanner(System.in);
+            int selectedID = scanner.nextInt();
+
+            // костыль на Back to main menu :(
+            if (selectedID == 0) {
+                managerMenu.openMenu();
+                return;
+            }
+
+            Company selectedCompany = companies.stream()
+                    .filter(company -> company.getListNumber() == selectedID)
+                    .findFirst()
+                    .orElse(null);
+            setupCompanyMenu(selectedCompany).openMenu();
+        });
+
+        MenuItem createCompany = new MenuItem(2, "2. Create a company", () -> {
+            System.out.println("Enter the company name:");
+            String name = new Scanner(System.in).nextLine();
+            companyDAO.createCompany(name);
+            System.out.println("The company was created!");
+
+            managerMenu.openMenu();
+        });
+
+
+        return new UserMenu(List.of(chooseCompany, createCompany, backToFirstMenu));
+    }
+
+    private static UserMenu setupCompanyMenu(Company company) {
+        System.out.println("'" + company.getName() + "' company");
+
+        MenuItem showCarList = new MenuItem(1, "1. Car list", () -> {
+            List<Car> cars = companyDAO.getCarList(company);
+            if (cars.isEmpty()) {
+                System.out.println("The car list is empty!");
+                return;
+            }
+            System.out.println("Car list:");
+            printCarList(cars);
+        });
+
+        MenuItem createCar = new MenuItem(2, "2. Create a car", () -> {
+            System.out.println("Enter the car name:");
+            Scanner scanner = new Scanner(System.in);
+            String carName = scanner.nextLine();
+            companyDAO.createCar(company, carName);
+            System.out.println("The car was added!");
+        });
+
+        MenuItem backToManagerMenu = new MenuItem(0, "0. Back", () -> managerMenu.openMenu());
+
+        return new UserMenu(List.of(showCarList, createCar, backToManagerMenu));
+    }
+
+    private static void printCompanyList(List<Company> companies) {
+        int counter = 1;
+        for (Company company : companies) {
+            company.setListNumber(counter);
+            System.out.printf("%d. %s%n", counter, company.getName());
+            counter++;
+        }
+    }
+
+    private static void printCarList(List<Car> cars) {
+        int counter = 1;
+        for (Car car : cars) {
+            car.setListNumber(counter);
+            System.out.printf("%d. %s%n", counter, car.getName());
+            counter++;
+        }
+    }
+
+    private static String getDatabaseFileName(String[] args) {
+        String databaseFileName = "H2storage";
+        //String[] debugArgs = new String[] {"-databaseFileName", "db"};
+
+        HashMap<String, String> arguments = parseConsoleArguments(args);
+        if (arguments.containsKey("-databaseFileName")) {
+            databaseFileName = arguments.get("-databaseFileName");
+        }
+        return databaseFileName;
+    }
+
+    private static HashMap<String, String> parseConsoleArguments(String[] args) {
+        HashMap<String, String> arguments = new HashMap<>();
+        List<String> arrayOfArgs = List.of(args);
+
+        String key = "";
+        for (String arg : arrayOfArgs) {
+            if (arg.startsWith("-")) {
+                key = arg;
+                continue;
+            }
+            arguments.put(key, arg);
+        }
+
+        return arguments;
     }
 }
-
-/*
-Stage 2 - Mykola Danyliuk
-- Ahora, implementemos la capacidad de trabajar con la base de datos desde su programa.
-En esta etapa, creara un menu facil de usar que le permitira inicial sesion
-como administrador, crear empresas y guardarlas en la base de datos.
-
-Objetivos
-Actualice su base de datos y agregue restricciones a la columna COMPANY:
-    - La columna ID debe PRIMARY KEY y AUTO_INCREMENT
-    - La columna NAME debe ser UNIQUE y NOT NULL
-    - Los tipos de columna deben ser los mismos que en la etapa anterior
-Implemente el menu con las siguientes opciones:
-    1. Log in as a manager
-    0. Exit
-Si la opcion Exit es elegida, el programa debe detenerse. En caso de que el
-usuario elija Log is as a manager, se debe imprimir el siguiente menu:
-    1. Company list
-    2. Create a company
-    3. Back
-Ahora, si el usuario eligio Back, el program debe imprimir el menu principal.
-Company list debe imprimir la lista de empresas ordenadas por sus ID.
-Sus indices parten de 1, por ejemplo:
-    Company list:
-    1. First company name
-    2. Second company name
-    3. Third company name
-Si no hay empresas, imprimir The company list is empty!.
-Si la opcion Create a company fue elegida, el program debe solicitar al
-usuario que ingrese el nombre de una empresa con el mensaje Enter the company name:,
-lea el nombre de la empresa y guardelo en la base de datos.
- */

@@ -360,8 +360,8 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/11502#comment
-status: Failed
+status: Solved
 feedback:
-  message: Failed to launch checking
-  time: Wed, 20 Jul 2022 20:42:24 UTC
-record: -1
+  message: Congratulations!
+  time: Sun, 24 Jul 2022 00:26:12 UTC
+record: 2

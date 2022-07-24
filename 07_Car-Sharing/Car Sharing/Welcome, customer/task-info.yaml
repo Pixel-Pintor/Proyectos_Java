@@ -862,6 +862,337 @@ files:
         }
     }
   learner_created: false
+- name: src/carsharing/Car.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    public class Car {
+
+        private final long id;
+        private final String name;
+        private long listNumber;
+
+        public Car(long id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%d. %s", getId(), getName());
+        }
+
+        public long getListNumber() {
+            return listNumber;
+        }
+
+        public void setListNumber(long listNumber) {
+            this.listNumber = listNumber;
+        }
+    }
+  learner_created: true
+- name: src/carsharing/Company.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    public class Company {
+
+        private final long id;
+        private final String name;
+        private long listNumber;
+
+        public Company(long id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%d. %s", id, name);
+        }
+
+        public long getListNumber() {
+            return listNumber;
+        }
+
+        public void setListNumber(long listNumber) {
+            this.listNumber = listNumber;
+        }
+    }
+  learner_created: true
+- name: src/carsharing/CompanyDAOImpl.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    import java.sql.*;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Optional;
+
+    public class CompanyDAOImpl implements CompanyDAO {
+
+        private final Database database;
+        private final String databaseName;
+        private Optional<Company> selectedCompany;
+
+        public CompanyDAOImpl(String databaseName) {
+            this.databaseName = databaseName;
+            database = new Database();
+            createCompanyTable();
+            createCarTable();
+        }
+
+        @Override
+        public void createCompany(String companyName) {
+            database.execute(databaseName, "INSERT INTO COMPANY (name) " +
+                    "VALUES('" + companyName + "');");
+        }
+
+        @Override
+        public List<Company> getCompanyList() {
+            List<Company> companies = new ArrayList<>();
+            try (ResultSet result = database.executeQuery(databaseName, "SELECT * FROM COMPANY;")) {
+                while (result.next()) {
+                    long id = result.getLong("id");
+                    String name = result.getString("name");
+                    companies.add(new Company(id, name));
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            return companies;
+        }
+
+        @Override
+        public void createCar(Company company, String carName) {
+            database.execute(databaseName, "INSERT INTO CAR (name, company_id) " +
+                    String.format("VALUES('%s', %d);", carName, company.getId()));
+        }
+
+        @Override
+        public List<Car> getCarList(Company company) {
+            List<Car> cars = new ArrayList<>();
+            try (ResultSet result = database.executeQuery(databaseName,
+                    String.format("SELECT * FROM CAR WHERE COMPANY_ID = %d;", company.getId()))) {
+                while (result.next()) {
+                    long id = result.getLong("id");
+                    String name = result.getString("name");
+                    cars.add(new Car(id, name));
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            return cars;
+        }
+
+        private void createCompanyTable() {
+            database.execute(databaseName,
+                    "CREATE TABLE COMPANY (" +
+                            "ID INTEGER PRIMARY KEY AUTO_INCREMENT, " +
+                            "NAME VARCHAR UNIQUE NOT NULL" +
+                            ");"
+            );
+        }
+
+        private void createCarTable() {
+            database.execute(databaseName,
+                    "CREATE TABLE CAR (" +
+                            "ID INTEGER PRIMARY KEY AUTO_INCREMENT, " +
+                            "NAME VARCHAR UNIQUE NOT NULL," +
+                            "COMPANY_ID INTEGER NOT NULL," +
+                            "CONSTRAINT fk_company FOREIGN KEY (COMPANY_ID)" +
+                            "REFERENCES COMPANY(ID)" +
+                            ");"
+            );
+        }
+    }
+  learner_created: true
+- name: src/carsharing/MenuItem.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    public class MenuItem {
+        private final long id;
+        private final String description;
+        private final Runnable execution;
+
+        public MenuItem(long id, String description, Runnable execution) {
+            this.id = id;
+            this.description = description;
+            this.execution = execution;
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void execute() {
+            execution.run();
+        }
+    }
+  learner_created: true
+- name: src/carsharing/UserMenu.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    import java.util.LinkedHashSet;
+    import java.util.List;
+    import java.util.Scanner;
+
+    public class UserMenu {
+
+        LinkedHashSet<MenuItem> menuItems;
+        Scanner scanner;
+
+        public UserMenu(List<MenuItem> items) {
+            scanner = new Scanner(System.in);
+            menuItems = new LinkedHashSet<>();
+            menuItems.addAll(items);
+        }
+
+        public void openMenu() {
+            System.out.println(" ");
+            menuItems.forEach(menuItem -> System.out.println(menuItem.getDescription()));
+            selectMenuItem();
+        }
+
+        private void selectMenuItem() {
+            long itemID = scanner.nextInt();
+            menuItems.forEach(menuItem -> {
+                if (menuItem.getId() == 0) {
+                    menuItem.execute();
+                }
+                if (menuItem.getId() == itemID) {
+                    menuItem.execute();
+                    openMenu();
+                }
+            });
+        }
+    }
+  learner_created: true
+- name: src/carsharing/Database.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    import java.io.File;
+    import java.io.IOException;
+    import java.sql.*;
+
+    class Database {
+
+        private static final String DRIVER = "org.h2.Driver";
+        private static final String URL = "jdbc:h2:./";
+        private static final String FOLDER = "src/carsharing/db/";
+
+        public Database() {
+            try {
+                Class.forName(DRIVER);
+
+            } catch (ClassNotFoundException e) {
+                System.out.println("Драйвер " + DRIVER + " не найден!!!");
+            }
+        }
+
+        private Connection getConnection(String database_name) {
+            createDatabaseFolder(database_name);
+            String connectionString = URL + FOLDER + database_name;
+            Connection connection = null;
+            try {
+                connection =  DriverManager.getConnection(connectionString);
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                return connection;
+            }
+            return connection;
+        }
+
+        public ResultSet executeQuery(String database_name, String query) {
+            PreparedStatement statement;
+            ResultSet resultSet = null;
+
+            try {
+                Connection connection = getConnection(database_name);
+                statement = connection.prepareStatement(query);
+                resultSet = statement.executeQuery();
+
+            } catch (SQLException e) {
+                System.out.println("Ошибка запроса: " + e.getMessage());
+            }
+            return resultSet;
+        }
+
+        public void execute(String database_name, String query) {
+            PreparedStatement statement;
+
+            try (Connection connection = getConnection(database_name)) {
+                statement = connection.prepareStatement(query);
+                statement.execute();
+                statement.close();
+            } catch (SQLException e) {
+                System.out.println("Ошибка запроса: " + e.getMessage());
+            }
+        }
+
+        private void createDatabaseFolder(String dataFile) {
+            File folder = new File(FOLDER);
+            boolean isFolderCreated = folder.mkdirs();
+
+            File file = new File(FOLDER + dataFile + ".mv.db");
+            try {
+                boolean isFileCreated = file.createNewFile();
+            } catch (IOException ignored) {
+            }
+
+        }
+
+    }
+  learner_created: true
+- name: src/carsharing/CompanyDAO.java
+  visible: true
+  text: |-
+    package carsharing;
+
+    import java.util.List;
+
+    interface CompanyDAO {
+
+        void createCompany(String CompanyName);
+
+        List<Company> getCompanyList();
+
+        void createCar(Company company, String carName);
+
+        List<Car> getCarList(Company company);
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/11504#comment
 status: Unchecked
 record: -1

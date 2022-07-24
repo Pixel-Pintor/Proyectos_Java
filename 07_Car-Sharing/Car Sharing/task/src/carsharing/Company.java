@@ -2,27 +2,33 @@ package carsharing;
 
 public class Company {
 
-    private int id;
-    private String name;
+    private final long id;
+    private final String name;
+    private long listNumber;
 
-    public Company(int id, String name) {
+    public Company(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public String toString() {
+        return String.format("%d. %s", id, name);
+    }
+
+    public long getListNumber() {
+        return listNumber;
+    }
+
+    public void setListNumber(long listNumber) {
+        this.listNumber = listNumber;
     }
 }
