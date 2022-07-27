@@ -9,17 +9,20 @@
 5[0m[0;34m =========|_|==============|___/=/_/_/_/
 7[0m[0;34m :: Spring Boot ::                (v2.5.6)
 [0m[0;34m
-´[0m[0;34m2022-07-23 18:19:30.973  INFO 16732 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine using Java 17.0.2 on DESKTOP-MHJTMMJ with PID 16732 (started by cprad in C:\Users\cprad\OneDrive\Escritorio\JetBrains_Java\10_Web-Quiz-Engine\Web Quiz Engine\task)
-±[0m[0;34m2022-07-23 18:19:30.988  INFO 16732 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
-ù[0m[0;34m2022-07-23 18:19:39.165  INFO 16732 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
-ä[0m[0;34m2022-07-23 18:19:39.287  INFO 16732 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-†[0m[0;34m2022-07-23 18:19:39.289  INFO 16732 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
-£[0m[0;34m2022-07-23 18:19:40.068  INFO 16732 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-∞[0m[0;34m2022-07-23 18:19:40.069  INFO 16732 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8729 ms
-¶[0m[0;34m2022-07-23 18:19:43.733  INFO 16732 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-¨[0m[0;34m2022-07-23 18:19:43.974  INFO 16732 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
-±[0m[0;34m2022-07-23 18:19:44.050  INFO 16732 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 16.829 seconds (JVM running for 33.765)
-¶[0;34m2022-07-23 18:19:46.790  INFO 16732 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-ô[0m[0;34m2022-07-23 18:19:46.792  INFO 16732 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-í[0m[0;34m2022-07-23 18:19:46.807  INFO 16732 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
-[0m
+©[0m[0;34m2022-07-25 22:20:11.098  INFO 6168 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine using Java 17.0.2 on DESKTOP-MHJTMMJ with PID 6168 (started by cprad in C:\Users\cprad\OneDrive\Escritorio\JetBrains_Java\10_Web-Quiz-Engine\Web Quiz Engine\task)
+∞[0m[0;34m2022-07-25 22:20:11.115  INFO 6168 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
+ú[0m[0;34m2022-07-25 22:20:21.112  INFO 6168 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+â[0m[0;34m2022-07-25 22:20:21.242  INFO 6168 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+ü[0m[0;34m2022-07-25 22:20:21.245  INFO 6168 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+¢[0m[0;34m2022-07-25 22:20:22.076  INFO 6168 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+∞[0m[0;34m2022-07-25 22:20:22.081  INFO 6168 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10638 ms
+•[0m[0;34m2022-07-25 22:20:28.867  INFO 6168 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+´[0m[0;34m2022-07-25 22:20:29.268  INFO 6168 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+∞[0m[0;34m2022-07-25 22:20:29.414  INFO 6168 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 21.454 seconds (JVM running for 33.842)
+•[0;34m2022-07-25 22:20:32.633  INFO 6168 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ò[0m[0;34m2022-07-25 22:20:32.636  INFO 6168 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+ê[0m[0;34m2022-07-25 22:20:32.643  INFO 6168 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+[0m[1;31m
+Start test 2[0m
+[1;31m
+Start test 3[0m

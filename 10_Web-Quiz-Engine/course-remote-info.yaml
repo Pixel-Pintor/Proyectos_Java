@@ -3,11 +3,11 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/287312/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sat, 23 Jul 2022 20:08:36 UTC
+update_date: Tue, 26 Jul 2022 03:04:50 UTC
 stages:
 - id: 504
   step: 8252
-  is_completed: false
+  is_completed: true
 - id: 505
   step: 8253
   is_completed: false
@@ -330,22 +330,6 @@ topics:
     theory_id: 8312
   - title: Introduction to PostgreSQL
     theory_id: 17974
-  - title: Lambda expressions
-    theory_id: 11635
-  - title: Method references
-    theory_id: 3620
-  - title: Functional interfaces
-    theory_id: 11636
-  - title: Standard functional interfaces
-    theory_id: 3623
-  - title: Optional
-    theory_id: 9699
-  - title: Generic methods
-    theory_id: 3606
-  - title: Anonymous classes
-    theory_id: 11896
-  - title: Default methods
-    theory_id: 11354
   4:
   - title: Web security, OWASP
     theory_id: 14755

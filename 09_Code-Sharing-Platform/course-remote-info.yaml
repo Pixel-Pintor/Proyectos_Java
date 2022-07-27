@@ -7,10 +7,10 @@ update_date: Wed, 20 Jul 2022 12:59:53 UTC
 stages:
 - id: 692
   step: 11027
-  is_completed: false
+  is_completed: true
 - id: 693
   step: 11028
-  is_completed: false
+  is_completed: true
 - id: 694
   step: 11029
   is_completed: false
@@ -225,7 +225,7 @@ topics:
     theory_id: 7730
   - title: HTML attributes id and class
     theory_id: 7527
-  - title: HTML forms
+  - title: Intro to HTML forms
     theory_id: 6560
   - title: Border
     theory_id: 8355
@@ -245,10 +245,6 @@ topics:
     theory_id: 8372
   - title: LocalTime
     theory_id: 3593
-  - title: LocalDate
-    theory_id: 3592
-  - title: LocalDateTime
-    theory_id: 3617
   2:
   - title: Relative units
     theory_id: 10671
@@ -311,35 +307,3 @@ topics:
     theory_id: 13785
   - title: XML
     theory_id: 6901
-  - title: Intro to MySQL
-    theory_id: 16662
-  - title: Data and object mapping
-    theory_id: 8262
-  - title: Object-Relational Mapping (ORM)
-    theory_id: 8312
-  - title: Introduction to PostgreSQL
-    theory_id: 17974
-  - title: Introduction to generic programming
-    theory_id: 3492
-  - title: Lambda expressions
-    theory_id: 11635
-  - title: Method references
-    theory_id: 3620
-  - title: Functional interfaces
-    theory_id: 11636
-  - title: Standard functional interfaces
-    theory_id: 3623
-  - title: Optional
-    theory_id: 9699
-  - title: Generic methods
-    theory_id: 3606
-  - title: Polymorphism
-    theory_id: 3587
-  - title: Interface
-    theory_id: 3615
-  - title: Anonymous classes
-    theory_id: 11896
-  - title: Default methods
-    theory_id: 11354
-  - title: Boxing and unboxing
-    theory_id: 3595

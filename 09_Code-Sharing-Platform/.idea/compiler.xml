@@ -12,6 +12,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17">
+      <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-classes-java.main" target="11" />
+      <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-generated-sources-annotationProcessor-java.main" target="11" />
+      <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-generated-sources-headers-java.main" target="11" />
+      <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-reports-tests.main" target="11" />
+      <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-test-results.main" target="11" />
+      <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-tmp.main" target="11" />
       <module name="09_Code-Sharing-Platform.Code_Sharing_Platform-task.main" target="11" />
       <module name="09_Code-Sharing-Platform.Topics-Abstract_class-About_abstract_classes.main" target="11" />
       <module name="09_Code-Sharing-Platform.Topics-Abstract_class-An_incorrect_statement.main" target="11" />
@@ -45,6 +51,9 @@
       <module name="09_Code-Sharing-Platform.Topics-toString__-Theory.main" target="11" />
       <module name="09_Code-Sharing-Platform.Topics-toString__-Users_as_strings.main" target="11" />
       <module name="09_Code-Sharing-Platform.util.main" target="11" />
+      <module name="java.09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-classes-java.main" target="11" />
+      <module name="java.09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-generated-sources-annotationProcessor-java.main" target="11" />
+      <module name="java.09_Code-Sharing-Platform.Code_Sharing_Platform-task-build-generated-sources-headers-java.main" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

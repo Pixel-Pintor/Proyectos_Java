@@ -133,16 +133,21 @@ files:
         }
     }
   learner_created: false
+- name: src/engine/business/entity/Quiz.java
+  visible: true
+  learner_created: true
+- name: src/engine/business/service/QuizService.java
+  visible: true
+  learner_created: true
+- name: src/engine/business/presentation/SolveQuizResponseDto.java
+  visible: true
+  learner_created: true
+- name: src/engine/business/presentation/controller/QuizController.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/8252#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #1
-
-    GET /api/quiz should respond with status code 200, responded: 404
-
-    Response body:
-
-    {&quot;timestamp&quot;:&quot;2022-07-23T23:19:47.038+00:00&quot;,&quot;status&quot;:404,&quot;error&quot;:&quot;Not Found&quot;,&quot;path&quot;:&quot;/api/quiz&quot;}
-  time: Sat, 23 Jul 2022 23:19:50 UTC
+  message: Congratulations!
+  time: Tue, 26 Jul 2022 03:20:35 UTC
 record: -1
